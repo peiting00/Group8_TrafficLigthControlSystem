@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem;
+package group9_trafficlightcontrolsystem_bw;
 
 /**
  *
- * @author user
+ * @author asus
  */
-public class Thread2 {
+public class Pedestrain extends Thread{
     
 }
