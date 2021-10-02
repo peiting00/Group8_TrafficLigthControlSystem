@@ -5,34 +5,28 @@
  */
 package group9_trafficlightcontrolsystem_pt;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 /**
  *
  * @author user
  */
-public class AllTrafficLight extends Thread{
+public class TrafficLights extends Thread{
+     TrafficLightControl trafficControl;
     
-    TrafficLightControl trafficControl;
-    
-    public AllTrafficLight(TrafficLightControl trafficControl){
+    public TrafficLights(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
     }
     
     public void run(){
         try{
             while(true){
-                trafficControl.allowDirectionByTimer();
-                TimeUnit.SECONDS.sleep(5);
-                
+                trafficControl.allowNorth();
+                trafficControl.allowSouth();
+                trafficControl.allowEast();
+                trafficControl.allowWest();
             }
             
         }catch(InterruptedException e){
             e.printStackTrace();
-        }
-        
+        }   
     }
-    
-    
 }

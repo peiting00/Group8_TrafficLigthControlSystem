@@ -5,6 +5,9 @@
  */
 package group9_trafficlightcontrolsystem_pt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -15,13 +18,11 @@ public class Group9_TrafficLightControlSystem_PT {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         
-        
         TrafficLightControl trafficControl = new TrafficLightControl();
-        
-        AllTrafficLight trafficLights = new AllTrafficLight(trafficControl);
-        trafficLights.start();
+       
         
         Car cars = new Car(trafficControl);
         Thread car = new Thread(cars);
@@ -29,6 +30,13 @@ public class Group9_TrafficLightControlSystem_PT {
         
         Pedestrain p = new Pedestrain(trafficControl);
         p.start();
+        
+        AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl);
+        AllTrafficLights.start();
+        
+        TrafficLights trafficLights = new TrafficLights(trafficControl);
+        trafficLights.start();
+        
       
     }
 }

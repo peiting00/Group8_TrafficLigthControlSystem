@@ -20,11 +20,11 @@ public class CarList extends Thread{
     private String goTo;
     
     //public CarList(TrafficLightControl trafficControl, String carID, String from, String goTo){
-    public CarList(TrafficLightControl trafficControl, String carID, String from){
+    public CarList(TrafficLightControl trafficControl, String carID, String from,String goTo){
         this.carID = carID;
         this.trafficControl = trafficControl;
         this.from = from;
-        //this.goTo = goTo;
+        this.goTo = goTo;
         
     }
     
