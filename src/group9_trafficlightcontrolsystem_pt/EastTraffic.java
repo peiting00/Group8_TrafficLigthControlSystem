@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package group9_trafficlightcontrolsystem_pt;
-import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author user
  */
-public class TrafficLights extends Thread{
+public class EastTraffic extends Thread{
      TrafficLightControl trafficControl;
     
-    public TrafficLights(TrafficLightControl trafficControl){
+    public EastTraffic(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
     }
     
@@ -20,10 +20,7 @@ public class TrafficLights extends Thread{
         try{
             
             while(true){
-                trafficControl.allowNorth();
-                trafficControl.allowSouth();
                 trafficControl.allowEast();
-                trafficControl.allowWest();
             }
             
         }catch(InterruptedException e){

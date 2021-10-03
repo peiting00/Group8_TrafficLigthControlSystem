@@ -25,7 +25,7 @@ public class AllTrafficLight extends Thread{
             while(true){
                 trafficControl.allowDirectionByTimer();
                 TimeUnit.SECONDS.sleep(5);
-                
+
             }
             
         }catch(InterruptedException e){

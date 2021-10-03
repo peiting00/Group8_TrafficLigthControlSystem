@@ -35,10 +35,10 @@ public class Car implements Runnable{
     
     public void run(){
         int i=0;
-        while(i<5){
-        //while(true){
+        //while(i<5){
+        while(true){
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 String carID = generateCarPlateNumber();
                 trafficControl.generateCarDirection(carID);
                 i++;

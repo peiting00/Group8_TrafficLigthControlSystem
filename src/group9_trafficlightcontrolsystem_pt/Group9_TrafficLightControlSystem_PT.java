@@ -31,11 +31,20 @@ public class Group9_TrafficLightControlSystem_PT {
         Pedestrain p = new Pedestrain(trafficControl);
         p.start();
         
+        //TrafficLights trafficLights = new TrafficLights(trafficControl);
+        //trafficLights.start();
+        NorthTraffic n = new NorthTraffic(trafficControl);
+        n.start();
+        SouthTraffic s = new SouthTraffic(trafficControl);
+        s.start();
+        EastTraffic e = new EastTraffic(trafficControl);
+        e.start();
+        WestTraffic w = new WestTraffic(trafficControl);
+        w.start();
+        
         AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl);
         AllTrafficLights.start();
         
-        TrafficLights trafficLights = new TrafficLights(trafficControl);
-        trafficLights.start();
         
       
     }

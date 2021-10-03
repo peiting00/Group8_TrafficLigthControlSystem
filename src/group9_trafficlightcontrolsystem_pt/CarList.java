@@ -41,7 +41,7 @@ public class CarList extends Thread{
     }
     
     public String getCarInfo(){
-        return "CarID: "+carID+" from: "+from+" go to: "+goTo;
+        return "CarID "+carID+" FROM "+from+" GO TO "+goTo;
     }
    
 }
