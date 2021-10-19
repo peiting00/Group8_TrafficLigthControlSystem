@@ -14,10 +14,18 @@ import java.awt.Color;
  */
 public class TrafficModel extends javax.swing.JFrame {
     String currentActiveDirection = "N";
-    private javax.swing.JLabel currentActiveLabel;
+    javax.swing.JLabel currentGreen;
+    javax.swing.JLabel readyToYellow;
+    javax.swing.JLabel readyToRed;
+    
     public TrafficModel() {
+        this.readyToYellow = yellowlight_goNorth;
+        this.readyToRed = redlight_goNorth;
+        this.currentGreen = greenlight_goNorth; 
+        
         initComponents();
         this.setLocationRelativeTo(null);//center form in the screen
+        
     }
 
     /**
@@ -284,74 +292,123 @@ public class TrafficModel extends javax.swing.JFrame {
 //   }
 //});
 
-    /**
-     *
-     */
     
-    public void setCurrentActiveDirectionToGreen(String direction){
-//        currentActiveDirection
-//                currentActiveLabel
-    }
-    
-    public void setNorthToGreen(){
-        redlight_goNorth.setBackground(Color.white);
-        yellowlight_goNorth.setBackground(Color.white);
-        greenlight_goNorth.setBackground(Color.green);
-        //set other light to red
-        redlight_goSouth.setBackground(Color.red);
-        redlight_goEast.setBackground(Color.red);
-        redlight_goWest.setBackground(Color.red);
-        //set other GREEN to WHITE
-        greenlight_goSouth.setBackground(Color.white);
-        greenlight_goEast.setBackground(Color.white);
-        greenlight_goWest.setBackground(Color.white);
+   
+    public void setWhichDirectionToColor(String occupied, String color){
+        Color colorToSet = color.equals("G") ? Color.green : 
+                            color.equals("Y") ? Color.yellow : Color.red;
         
+        if(color.equals("G")){
+            if(currentGreen != null)
+                currentGreen.setBackground(Color.white);
+            
+            if(occupied.equals("N")){
+                currentGreen = greenlight_goNorth;
+                readyToYellow = yellowlight_goNorth;
+                readyToRed = redlight_goNorth;
+            }
+            else if(occupied.equals("S")){
+                currentGreen = greenlight_goSouth;
+                readyToYellow = yellowlight_goSouth;
+                readyToRed = redlight_goSouth;
+            }
+            else if(occupied.equals("E")){
+                currentGreen = greenlight_goEast;
+                readyToYellow = yellowlight_goEast;
+                readyToRed = redlight_goEast;
+            }
+            else{
+                currentGreen = greenlight_goWest;
+                readyToYellow = yellowlight_goWest;
+                readyToRed = redlight_goWest;
+            }
+            
+            currentGreen.setBackground(colorToSet);
+            readyToRed.setBackground(Color.white);
+            setOtherDirectionToRed(occupied);
+        }
+        else if(color.equals("Y")){
+            currentGreen.setBackground(Color.white);
+            readyToYellow.setBackground(colorToSet);
+        }
+        else{
+            readyToYellow.setBackground(Color.white);
+            readyToRed.setBackground(colorToSet);
+        }
     }
     
-    public void setSouthToGreen(){
-        redlight_goSouth.setBackground(Color.white);
-        yellowlight_goSouth.setBackground(Color.white);
-        greenlight_goSouth.setBackground(Color.green);
-        //set other light to red
-        redlight_goNorth.setBackground(Color.red);
-        redlight_goEast.setBackground(Color.red);
-        redlight_goWest.setBackground(Color.red);
-        //set other GREEN to WHITE
-        greenlight_goNorth.setBackground(Color.white);
-        greenlight_goEast.setBackground(Color.white);
-        greenlight_goWest.setBackground(Color.white);
+    public void setOtherDirectionToRed(String occupied){
+        if(!occupied.equals("N"))
+            redlight_goNorth.setBackground(Color.red);
+        
+        if(!occupied.equals("S"))
+            redlight_goSouth.setBackground(Color.red);
+        
+        if(!occupied.equals("E"))
+            redlight_goEast.setBackground(Color.red);
+        
+        if(!occupied.equals("W"))
+            redlight_goWest.setBackground(Color.red);
     }
+
     
-    public void setEastToGreen(){
-        redlight_goEast.setBackground(Color.white);
-        yellowlight_goEast.setBackground(Color.white);
-        greenlight_goEast.setBackground(Color.green);
-        //set other light to red
-        redlight_goNorth.setBackground(Color.red);
-        redlight_goSouth.setBackground(Color.red);
-        redlight_goWest.setBackground(Color.red);
-        //set other GREEN to WHITE
-        greenlight_goSouth.setBackground(Color.white);
-        greenlight_goNorth.setBackground(Color.white);
-        greenlight_goWest.setBackground(Color.white);
-    }
-    
-    public void setWestToGreen(){
-        redlight_goWest.setBackground(Color.white);
-        yellowlight_goWest.setBackground(Color.white);
-        greenlight_goWest.setBackground(Color.green);
-        //set other light to red
-        redlight_goNorth.setBackground(Color.red);
-        redlight_goEast.setBackground(Color.red);
-        redlight_goSouth.setBackground(Color.red);
-        //set other GREEN to WHITE
-        greenlight_goSouth.setBackground(Color.white);
-        greenlight_goNorth.setBackground(Color.white);
-        greenlight_goEast.setBackground(Color.white);
-    }
-
-
-
+//    public void setNorthToGreen(){
+//        //先set其他light 去red
+//        redlight_goNorth.setBackground(Color.white);
+//        yellowlight_goNorth.setBackground(Color.white);
+//        greenlight_goNorth.setBackground(Color.green);
+//        //set other light to red
+//        redlight_goSouth.setBackground(Color.red);
+//        redlight_goEast.setBackground(Color.red);
+//        redlight_goWest.setBackground(Color.red);
+//        //set other GREEN to WHITE
+//        greenlight_goSouth.setBackground(Color.white);
+//        greenlight_goEast.setBackground(Color.white);
+//        greenlight_goWest.setBackground(Color.white);
+//        
+//    }
+//    
+//    public void setSouthToGreen(){
+//        redlight_goSouth.setBackground(Color.white);
+//        yellowlight_goSouth.setBackground(Color.white);
+//        greenlight_goSouth.setBackground(Color.green);
+//        //set other light to red
+//        redlight_goNorth.setBackground(Color.red);
+//        redlight_goEast.setBackground(Color.red);
+//        redlight_goWest.setBackground(Color.red);
+//        //set other GREEN to WHITE
+//        greenlight_goNorth.setBackground(Color.white);
+//        greenlight_goEast.setBackground(Color.white);
+//        greenlight_goWest.setBackground(Color.white);
+//    }
+//    
+//    public void setEastToGreen(){
+//        redlight_goEast.setBackground(Color.white);
+//        yellowlight_goEast.setBackground(Color.white);
+//        greenlight_goEast.setBackground(Color.green);
+//        //set other light to red
+//        redlight_goNorth.setBackground(Color.red);
+//        redlight_goSouth.setBackground(Color.red);
+//        redlight_goWest.setBackground(Color.red);
+//        //set other GREEN to WHITE
+//        greenlight_goSouth.setBackground(Color.white);
+//        greenlight_goNorth.setBackground(Color.white);
+//        greenlight_goWest.setBackground(Color.white);
+//    }
+//    
+//    public void setWestToGreen(){
+//        redlight_goWest.setBackground(Color.white);
+//        yellowlight_goWest.setBackground(Color.white);
+//        greenlight_goWest.setBackground(Color.green);
+//        //set other light to red
+//        redlight_goNorth.setBackground(Color.red);
+//        redlight_goEast.setBackground(Color.red);
+//        redlight_goSouth.setBackground(Color.red);
+//        //set other GREEN to WHITE
+//        greenlight_goSouth.setBackground(Color.white);
+//        greenlight_goNorth.setBackground(Color.white);
+//        greenlight_goEast.setBackground(Color.white);
+//    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //timer2.start();
@@ -414,4 +471,5 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel yellowlight_goSouth;
     private javax.swing.JLabel yellowlight_goWest;
     // End of variables declaration//GEN-END:variables
+
 }

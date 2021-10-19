@@ -34,7 +34,7 @@ public class TrafficLightControl{
     Timer timer = new Timer();
     String occupied="";
     int i = 5;
-    String [] seqDirection = {"N", "E", "S", "W", "P"};
+    String [] seqDirection = {"N", "E", "S", "W"}; //{"N", "E", "S", "W", "P"};
     int currentIndex = 0;
     
     public TrafficLightControl(){
@@ -47,36 +47,48 @@ public class TrafficLightControl{
         currentIndex = (currentIndex+1) % seqDirection.length;
         //System.out.println("            Allowing " + occupied + " to go");
         
-        switch(occupied){
-            case("N"):
-                tm.setNorthToGreen();
-                System.out.println("========North is Green");
-                notify();
-                //tm.setBackground(Color.yellow);
-                break;
-            case("S"):
-                tm.setSouthToGreen();
-                System.out.println("========South is Green");
-                //tm.setBackground(Color.yellow);
-                break;
-            case("E"):
-                tm.setEastToGreen();
-                System.out.println("========East is Green");
-                //tm.setBackground(Color.yellow);
-                break;
-            case("W"):
-                tm.setWestToGreen();
-                System.out.println("========West is Green");
-                //tm.setBackground(Color.yellow);
-                break;    
-        }
+        tm.setWhichDirectionToColor(occupied, "G");
+        
+//        switch(occupied){
+//            case("N"):
+//                tm.setNorthToGreen();
+//                System.out.println("========North is Green");
+//                //tm.setBackground(Color.yellow);
+//                break;
+//            case("S"):
+//                tm.setSouthToGreen();
+//                System.out.println("========South is Green");
+//                //tm.setBackground(Color.yellow);
+//                break;
+//            case("E"):
+//                tm.setEastToGreen();
+//                System.out.println("========East is Green");
+//                //tm.setBackground(Color.yellow);
+//                break;
+//            case("W"):
+//                tm.setWestToGreen();
+//                System.out.println("========West is Green");
+//                //tm.setBackground(Color.yellow);
+//                break;    
+//        }
+        System.out.println("Occupied " + occupied);
         notify();
+        
+    }
+    
+    public void setWhichDirectionToYellow(){
+        tm.setWhichDirectionToColor(occupied, "Y");
+    }
+    
+    public void setWhichDirectionToRed(){
+        tm.setWhichDirectionToColor(occupied, "R");
     }
     
     public synchronized void allowNorth() throws InterruptedException{
         while(!occupied.equals("N")){
             wait();
         }
+        
         if(!northQueue.isEmpty()){
             System.out.println("           "+northQueue.poll()+" is leaving North");
             Thread.sleep(1000);
