@@ -38,7 +38,7 @@ public class Car implements Runnable{
         //while(i<5){
         while(true){
             try {
-                Thread.sleep(500);
+                Thread.sleep(1500);
                 String carID = generateCarPlateNumber();
                 trafficControl.generateCarDirection(carID);
                 i++;

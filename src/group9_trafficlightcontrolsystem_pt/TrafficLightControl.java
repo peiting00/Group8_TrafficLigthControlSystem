@@ -68,7 +68,9 @@ public class TrafficLightControl{
                 tm.setWestToGreen();
                 System.out.println("========West is Green");
                 //tm.setBackground(Color.yellow);
-                break;    
+                break;
+            case("P"):
+                System.out.println("=======Pedestrain is Green");
         }
         notify();
     }
@@ -131,6 +133,7 @@ public class TrafficLightControl{
             //System.out.println("Pedestrain waiting...");
             wait();
         }
+        System.out.println("Pedestrain crossing....");
         notify();
     }
     
@@ -154,6 +157,7 @@ public class TrafficLightControl{
                 case("N"):
                     //carList_North.add(new CarList(this,carID,from,goTo));
                     northQueue.add(carID);
+                    tm.addCarToNorth(carID);
                     break;
                 case("S"):
                     //carList_South.add(new CarList(this,carID,from,goTo));
