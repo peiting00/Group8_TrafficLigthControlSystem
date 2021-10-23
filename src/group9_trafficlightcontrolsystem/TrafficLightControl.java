@@ -51,7 +51,7 @@ public class TrafficLightControl {
             green = "N";
             currentIndex = 0;
         }
-        
+ 
         tm.setWhichDirectionToColor(green, "G");
 
         String instructionToGUI = "";
