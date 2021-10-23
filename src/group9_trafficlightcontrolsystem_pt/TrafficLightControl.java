@@ -174,7 +174,7 @@ public class TrafficLightControl{
                 }
             
             System.out.println("@@ CarID:"+carID+" From:"+from+" GoTo:"+goTo);
-            notify();
+            //notify();
             
     }
     

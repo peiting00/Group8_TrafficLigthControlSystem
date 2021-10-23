@@ -9,6 +9,7 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
@@ -20,6 +21,7 @@ public class TrafficModel extends javax.swing.JFrame {
 
     public TrafficModel() {
         initComponents();
+        addCarToNorth("ABC");
         this.setLocationRelativeTo(null);//center form in the screen
     }
    
@@ -47,14 +49,13 @@ public class TrafficModel extends javax.swing.JFrame {
         jPanel_roadWest = new javax.swing.JPanel();
         jPanel_roadNorth = new javax.swing.JPanel();
         jPanel_roadEast = new javax.swing.JPanel();
-        jPanel_roadSouth = new javax.swing.JPanel();
         trafficLightBackground = new javax.swing.JPanel();
         redlight_goEast = new javax.swing.JLabel();
         yellowlight_goEast = new javax.swing.JLabel();
         greenlight_goEast = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("jFrame_main");
+        setTitle("Traffic Light");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -181,7 +182,7 @@ public class TrafficModel extends javax.swing.JFrame {
         );
         jPanel_roadWestLayout.setVerticalGroup(
             jPanel_roadWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
 
         jPanel_roadNorth.setBackground(new java.awt.Color(0, 0, 0));
@@ -190,7 +191,7 @@ public class TrafficModel extends javax.swing.JFrame {
         jPanel_roadNorth.setLayout(jPanel_roadNorthLayout);
         jPanel_roadNorthLayout.setHorizontalGroup(
             jPanel_roadNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 433, Short.MAX_VALUE)
         );
         jPanel_roadNorthLayout.setVerticalGroup(
             jPanel_roadNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,20 +208,7 @@ public class TrafficModel extends javax.swing.JFrame {
         );
         jPanel_roadEastLayout.setVerticalGroup(
             jPanel_roadEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
-        );
-
-        jPanel_roadSouth.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel_roadSouthLayout = new javax.swing.GroupLayout(jPanel_roadSouth);
-        jPanel_roadSouth.setLayout(jPanel_roadSouthLayout);
-        jPanel_roadSouthLayout.setHorizontalGroup(
-            jPanel_roadSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
-        jPanel_roadSouthLayout.setVerticalGroup(
-            jPanel_roadSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 287, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         trafficLightBackground.setBackground(new java.awt.Color(0, 0, 0));
@@ -266,53 +254,48 @@ public class TrafficModel extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(jPanel_roadEast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(trafficLightBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(trafficLightBackground_North, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel_roadSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel_roadNorth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
+                                .addComponent(trafficLightBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(trafficLightBackground_North, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(trafficLightBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(138, 138, 138)
-                                .addComponent(trafficLightBackground_North1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel_roadWest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(151, 151, 151)
+                                .addComponent(trafficLightBackground_North1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel_roadWest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_roadNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanel_roadSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(287, 287, 287)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel_roadWest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel_roadEast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel_roadEast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel_roadWest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(trafficLightBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                                .addComponent(trafficLightBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel_roadNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(trafficLightBackground_North, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(80, 80, 80)
+                                .addComponent(trafficLightBackground_North1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(trafficLightBackground_North, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(trafficLightBackground_North1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(trafficLightBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(trafficLightBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
+                .addComponent(jPanel_roadNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(819, 819, 819))
         );
 
         jPanel_roadWest.getAccessibleContext().setAccessibleName("panel_roadSouth");
+
+        getAccessibleContext().setAccessibleName("Traffic Light");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -422,15 +405,21 @@ public class TrafficModel extends javax.swing.JFrame {
     }
 
     public void addCarToNorth(String carID){
-         System.out.println("Reach here");
-         
-        JLabel car = new JLabel();
-        car.setLocation(177,92);
-        car.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        car.setForeground(Color.white);
-        car.setText(carID);
-        jPanel_roadNorth.add(car);
-       
+//        System.out.println("Reach here");
+//        this.frameInit();
+//        JFrame frame= new JFrame();
+//        
+//        JPanel panel = new JPanel();
+//        JLabel car = new JLabel();
+//        car.setLocation(5,6);
+//        car.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+//        car.setForeground(Color.black);
+//        car.setText(carID);
+//        panel.add(car);
+//        frame.add(panel);
+//        //frame.setSize(2000, 2000);
+// 
+//        //frame.show();
         
     }
 
@@ -441,7 +430,7 @@ public class TrafficModel extends javax.swing.JFrame {
 
     private void redlight_goSouthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_redlight_goSouthMouseClicked
         // TODO add your handling code here:
-       
+        System.out.println(redlight_goSouth.getLocation());
         
     }//GEN-LAST:event_redlight_goSouthMouseClicked
 
@@ -490,7 +479,6 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel greenlight_goWest;
     private javax.swing.JPanel jPanel_roadEast;
     private javax.swing.JPanel jPanel_roadNorth;
-    private javax.swing.JPanel jPanel_roadSouth;
     private javax.swing.JPanel jPanel_roadWest;
     private javax.swing.JLabel redlight_goEast;
     private javax.swing.JLabel redlight_goNorth;
