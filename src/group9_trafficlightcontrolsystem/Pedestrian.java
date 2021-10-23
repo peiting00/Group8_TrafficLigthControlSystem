@@ -29,7 +29,7 @@ public class Pedestrian implements Runnable{
     public void run(){       
         while(true){
             try {
-                Thread.sleep(1000);
+                Thread.sleep(60000);
                 trafficControl.generatePedestrian();
             }catch(InterruptedException ex){
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
