@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem_pt;
+package group9_trafficlightcontrolsystem;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  *
@@ -26,10 +27,10 @@ public class TrafficLightControl {
 //    List<CarList> carList_South= new ArrayList<>();   
 //    List<CarList> carList_East = new ArrayList<>();   
 //    List<CarList> carList_West = new ArrayList<>();   
-    Queue<String> northQueue = new PriorityQueue<String>();
-    Queue<String> southQueue = new PriorityQueue<String>();
-    Queue<String> eastQueue = new PriorityQueue<String>();
-    Queue<String> westQueue = new PriorityQueue<String>();
+    Queue<String> northQueue = new LinkedBlockingDeque<String>();
+    Queue<String> southQueue = new LinkedBlockingDeque<String>();
+    Queue<String> eastQueue = new LinkedBlockingDeque<String>();
+    Queue<String> westQueue = new LinkedBlockingDeque<String>();
 
     Timer timer = new Timer();
     String green = "";

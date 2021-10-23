@@ -3,28 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem_pt;
-import java.util.concurrent.TimeUnit;
+package group9_trafficlightcontrolsystem;
+
 /**
  *
  * @author user
  */
-public class TrafficLights extends Thread{
+public class SouthTraffic extends Thread{
      TrafficLightControl trafficControl;
     
-    public TrafficLights(TrafficLightControl trafficControl){
+    public SouthTraffic(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
-        
     }
     
     public void run(){
         try{
             
             while(true){
-                trafficControl.allowNorth();
                 trafficControl.allowSouth();
-                trafficControl.allowEast();
-                trafficControl.allowWest();
             }
             
         }catch(InterruptedException e){

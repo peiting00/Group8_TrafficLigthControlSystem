@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem_pt;
+package group9_trafficlightcontrolsystem;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,7 @@ public class AllTrafficLight extends Thread{
         try{
             while(true){
                 trafficControl.allowDirectionByTimer();
-                Thread.sleep(3000); 
+                Thread.sleep(8000); 
                 
                 trafficControl.setWhichDirectionToYellow();
                 Thread.sleep(3000); 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem_pt;
+package group9_trafficlightcontrolsystem;
 import javax.swing.Timer;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
