@@ -53,36 +53,32 @@ public class TrafficLightControl {
         }
  
         tm.setWhichDirectionToColor(green, "G");
-
-        String instructionToGUI = "";
-        switch (green) {
-            case ("N"):
-                instructionToGUI="North Traffic Light GREEN";
-                break;
-            case ("S"):
-                instructionToGUI = "South Traffic Light GREEN";
-                break;
-            case ("E"):
-                instructionToGUI = "East Traffic Light GREEN";
-                break;
-            case ("W"):
-                instructionToGUI = "West Traffic Light GREEN";
-                break;
-            case ("P"):
-                instructionToGUI = "Pedestrian Crossing GREEN";
-                break;
-        }
-        tm.setInstruction(instructionToGUI);
-
-        System.out.println("========================\n"+instructionToGUI+"\n========================");
+        
+        displayWhichDirectionisTurningWhichColor ("GREEN");
     }
 
     public void setWhichDirectionToYellow() {
         tm.setWhichDirectionToColor(green, "Y");
+        
+        displayWhichDirectionisTurningWhichColor("YELLOW");
+    }
+    
+    public void displayWhichDirectionisTurningWhichColor(String color){
+        String direction = (green.equals("N")) ? "North " : 
+                            (green.equals("S")) ? "South" :
+                            (green.equals("E")) ? "East" : 
+                            (green.equals("W")) ? "West" : "Pedestrian";
+        
+        String instructionToGUI = direction + " Traffic Light " + color;
+        tm.setInstruction(instructionToGUI);
+        
+        System.out.println("\n=============================\n"+ instructionToGUI + "\n=============================");
     }
 
     public void setWhichDirectionToRed() {
         tm.setWhichDirectionToColor(green, "R");
+        
+        displayWhichDirectionisTurningWhichColor ("RED");
     }
 
     public synchronized void allowNorth() throws InterruptedException {

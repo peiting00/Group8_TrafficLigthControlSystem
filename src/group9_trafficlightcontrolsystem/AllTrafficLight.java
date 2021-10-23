@@ -27,6 +27,7 @@ public class AllTrafficLight extends Thread{
     public void run(){
         try{
             while(true){
+                Thread.sleep(1000);
                 trafficControl.allowDirectionByTimer();
                 Thread.sleep(3000); 
                 
