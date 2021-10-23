@@ -658,7 +658,7 @@ public class TrafficModel extends javax.swing.JFrame {
 //    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //timer2.start();
+       
     }//GEN-LAST:event_formWindowOpened
 
     /**
