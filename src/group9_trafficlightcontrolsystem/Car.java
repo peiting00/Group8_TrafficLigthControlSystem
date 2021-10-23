@@ -27,25 +27,49 @@ public class Car implements Runnable{
     
     TrafficModel tm ;
     TrafficLightControl trafficControl;
-    private String from;
+    CarList car;
+//    private String carID = "";
+//    private String from = "";
+//    private String goTo = "";
     
     public Car(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
     }
     
+//    public void setFrom(String from){
+//        this.from = from;
+//    }
+//    
+//    public void setGoTo(String goTo){
+//        this.goTo = goTo;
+//    }
+//    
+//    public String getCarID(){
+//        return carID;
+//    }
+//    
+//    public String getFrom(){
+//        return from;
+//    }
+//    
+//    public String goTo(){
+//        return goTo;
+//    }
+    
     public void run(){
         while(true){
             try {
                 Thread.sleep(1000);
-                String carID = generateCarPlateNumber();//generate CarID
-                trafficControl.generateCarDirection(carID);
+                CarList car = new CarList(generateCarPlateNumber(), "", "");
+                
+                trafficControl.generateCarDirection(car);
             }catch(InterruptedException ex){
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
       
-       public String generateCarPlateNumber(){
+    public String generateCarPlateNumber(){
         String randomPlate="";
         for(int i =0;i<3;i++){
             String[] alphabet = {"M","V","S","J","Q","A","B","C","D","E"};

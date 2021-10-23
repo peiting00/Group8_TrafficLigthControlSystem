@@ -13,19 +13,27 @@ import java.util.logging.Logger;
  * @author user
  */
 public class CarList extends Thread{
-    TrafficLightControl trafficControl;
-    
     private String carID;
     private String from;
     private String goTo;
     
     //public CarList(TrafficLightControl trafficControl, String carID, String from, String goTo){
-    public CarList(TrafficLightControl trafficControl, String carID, String from,String goTo){
+    public CarList(String carID, String from, String goTo){
         this.carID = carID;
-        this.trafficControl = trafficControl;
         this.from = from;
         this.goTo = goTo;
-        
+    }
+    
+//    public void setCarID(String carID){
+//        this.carID = carID;
+//    }
+//    
+    public void setFrom(String from){
+        this.from = from;
+    }
+    
+    public void setGoTo(String goTo){
+        this.goTo = goTo;
     }
     
     public String getCarID(){
@@ -36,12 +44,12 @@ public class CarList extends Thread{
         return from;
     }
     
-    public String goTo(){
+    public String getGoTo(){
         return goTo;
     }
-    
-    public String getCarInfo(){
-        return "CarID "+carID+" FROM "+from+" GO TO "+goTo;
-    }
+//    
+//    public String getCarInfo(){
+//        return "CarID "+carID+" FROM "+from+" GO TO "+goTo;
+//    }
    
 }
