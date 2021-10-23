@@ -18,6 +18,10 @@ public class AllTrafficLight extends Thread{
     
     public AllTrafficLight(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
+        System.out.println("*********** WELCOME TO BOWEI & PEITING TRAFFIC LIGHT CONTROL SYSTEM ***********");
+        System.out.println("* This a 4 junctions traffic light control system. ");
+        System.out.println("* Scenario 1: ");
+        System.out.println("********************************************************************************\n");
     }
     
     public void run(){

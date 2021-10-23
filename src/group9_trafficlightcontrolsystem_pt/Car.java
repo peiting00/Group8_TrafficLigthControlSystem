@@ -35,11 +35,11 @@ public class Car implements Runnable{
     
     public void run(){
         int i=0;
-        //while(i<5){
+        
         while(true){
             try {
                 Thread.sleep(1000);
-                String carID = generateCarPlateNumber();
+                String carID = generateCarPlateNumber();//generate CarID
                 trafficControl.generateCarDirection(carID);
                 i++;
             }catch(InterruptedException ex){
@@ -58,7 +58,6 @@ public class Car implements Runnable{
             randomPlate = randomPlate.concat(carAlphabet.get(randomNum));
         }
         int num = (int)(Math.random()*9999);
-        //carList.add(new CarList(trafficControl,randomPlate+num,from,goTo));
         
         return randomPlate+num ;
     }

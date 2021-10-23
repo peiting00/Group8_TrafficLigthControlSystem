@@ -14,6 +14,7 @@ public class TrafficLights extends Thread{
     
     public TrafficLights(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
+        
     }
     
     public void run(){
