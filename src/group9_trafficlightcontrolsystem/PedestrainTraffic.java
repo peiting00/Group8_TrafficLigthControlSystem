@@ -9,18 +9,19 @@ package group9_trafficlightcontrolsystem;
  *
  * @author asus
  */
-public class Pedestrain extends Thread{
+public class PedestrainTraffic extends Thread{
     TrafficLightControl trafficControl;
     
-    public Pedestrain(TrafficLightControl tc){
+    public PedestrainTraffic(TrafficLightControl tc){
         trafficControl=tc;
     }
     
     public void run(){
-        
         try{
-            Thread.sleep(13000);
-            trafficControl.allowPedestrain();
+            while(true){
+                trafficControl.allowPedestrain();
+                Thread.sleep(1000);
+            }
         }
         catch(InterruptedException e){
             e.printStackTrace();

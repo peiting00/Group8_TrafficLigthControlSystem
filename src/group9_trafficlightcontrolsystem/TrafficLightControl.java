@@ -23,10 +23,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class TrafficLightControl {
 
     TrafficModel tm = new TrafficModel();
-//    List<CarList> carList_North = new ArrayList<>();   
-//    List<CarList> carList_South= new ArrayList<>();   
-//    List<CarList> carList_East = new ArrayList<>();   
-//    List<CarList> carList_West = new ArrayList<>();   
+
     Queue<String> northQueue = new LinkedBlockingDeque<String>();
     Queue<String> southQueue = new LinkedBlockingDeque<String>();
     Queue<String> eastQueue = new LinkedBlockingDeque<String>();
@@ -34,11 +31,11 @@ public class TrafficLightControl {
 
     Timer timer = new Timer();
     private String green = "";
-    private int i = 5;
+    
     private final String[] seqDirection = {"N", "E", "S", "W", "P"};//{"N", "E", "S", "W"};
     private int currentIndex = 0;
-    private Boolean pedestrain=false;
     
+    private int pedestrianNum = 0;
     
     public TrafficLightControl() {
         //tm = tm;
@@ -46,11 +43,15 @@ public class TrafficLightControl {
     }
 
     public synchronized void allowDirectionByTimer() throws InterruptedException {
-        
-        green = seqDirection[currentIndex];//Set Which Traffic Light is Green
+        green = seqDirection[currentIndex]; //Set Which Traffic Light is Green
+        notify();
         currentIndex = (currentIndex + 1) % seqDirection.length;
-        //System.out.println("            Allowing " + occupied + " to go");
-
+        
+        if(green.equals("P") && pedestrianNum == 0){
+            green = "N";
+            currentIndex = 0;
+        }
+        
         tm.setWhichDirectionToColor(green, "G");
 
         String instructionToGUI = "";
@@ -68,15 +69,12 @@ public class TrafficLightControl {
                 instructionToGUI = "West Traffic Light GREEN";
                 break;
             case ("P"):
-                if(pedestrain==true)
-                    instructionToGUI = "Predestrain Crossing GREEN";
+                instructionToGUI = "Pedestrian Crossing GREEN";
                 break;
         }
         tm.setInstruction(instructionToGUI);
 
         System.out.println("========================\n"+instructionToGUI+"\n========================");
-        notify();
-
     }
 
     public void setWhichDirectionToYellow() {
@@ -94,8 +92,8 @@ public class TrafficLightControl {
 
         if (!northQueue.isEmpty()) {
             System.out.println("                North Car Leaving: " + northQueue.poll());
-            Thread.sleep(1000);
         }
+        
         tm.setNorthTotalCar(northQueue.size());// update total car in GUI
         notify();
     }
@@ -104,10 +102,11 @@ public class TrafficLightControl {
         while (!green.equals("S")) {
             wait();
         }
+        
         if (!southQueue.isEmpty()) {
             System.out.println("                South Car Leaving: " + southQueue.poll());
-            Thread.sleep(1000);
         }
+        
         tm.setSouthTotalCar(southQueue.size());// update total car in GUI
         notify();
     }
@@ -116,36 +115,39 @@ public class TrafficLightControl {
         while (!green.equals("W")) {
             wait();
         }
+        
         if (!westQueue.isEmpty()) {
             System.out.println("                West Car Leaving: " + westQueue.poll());
-            Thread.sleep(1000);
         }
+        
         tm.setWestTotalCar(westQueue.size());// update total car in GUI
         notify();
     }
 
     public synchronized void allowEast() throws InterruptedException {
-        while (!green.equals("E")||pedestrain==true) {
+        while (!green.equals("E")) {
             wait();
         }
+        
         if (!eastQueue.isEmpty()) {
             System.out.println("                East Car Leaving: " + eastQueue.poll());
-            Thread.sleep(1000);
         }
+        
         tm.setEastTotalCar(eastQueue.size());// update total car in GUI
         notify();
     }
 
     public synchronized void allowPedestrain() throws InterruptedException {
-        pedestrain=true;
-        while(!green.equals("P") || pedestrain!=true){
+        
+        while(!green.equals("P")){
             wait();
         }
         
-        System.out.println("                     Allow Pedestrain GREEN");
-        Thread.sleep(5000);
-        //tm.setWestTotalCar(westQueue.size()); // update total car in GUI
-        pedestrain=false;
+        if(pedestrianNum != 0 && green.equals("P")){
+            System.out.println("                Pedestrian crossing :" + pedestrianNum + " Pedestrian(s) left");
+            pedestrianNum--;
+        }
+        
         notify();
     }
 
@@ -192,5 +194,11 @@ public class TrafficLightControl {
         notify();
 
     }
-
+    
+    public synchronized void generatePedestrian(){
+        pedestrianNum++;
+        
+        System.out.println("Pedestrian Amount:" + pedestrianNum);
+        notify();
+    }
 }

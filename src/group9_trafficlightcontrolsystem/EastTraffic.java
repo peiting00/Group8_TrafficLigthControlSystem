@@ -21,6 +21,7 @@ public class EastTraffic extends Thread{
             
             while(true){
                 trafficControl.allowEast();
+                Thread.sleep(1000);
             }
             
         }catch(InterruptedException e){

@@ -28,7 +28,11 @@ public class Group9_TrafficLightControlSystem {
         Thread car = new Thread(cars);
         car.start();
         
-        Pedestrain p = new Pedestrain(trafficControl);
+        Pedestrian pedestrians = new Pedestrian(trafficControl);
+        Thread pedestrian = new Thread(pedestrians);
+        pedestrian.start();
+        
+        PedestrainTraffic p = new PedestrainTraffic(trafficControl);
         p.start();
         
         //TrafficLights trafficLights = new TrafficLights(trafficControl);

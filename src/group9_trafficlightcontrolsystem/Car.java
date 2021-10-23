@@ -34,14 +34,11 @@ public class Car implements Runnable{
     }
     
     public void run(){
-        int i=0;
-        
         while(true){
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 String carID = generateCarPlateNumber();//generate CarID
                 trafficControl.generateCarDirection(carID);
-                i++;
             }catch(InterruptedException ex){
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }

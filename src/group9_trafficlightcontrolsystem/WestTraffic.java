@@ -20,6 +20,7 @@ public class WestTraffic extends Thread{
         try{
             while(true){
                 trafficControl.allowWest();
+                Thread.sleep(1000);
             }
             
         }catch(InterruptedException e){

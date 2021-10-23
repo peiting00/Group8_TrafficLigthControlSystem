@@ -28,7 +28,7 @@ public class AllTrafficLight extends Thread{
         try{
             while(true){
                 trafficControl.allowDirectionByTimer();
-                Thread.sleep(8000); 
+                Thread.sleep(3000); 
                 
                 trafficControl.setWhichDirectionToYellow();
                 Thread.sleep(3000); 

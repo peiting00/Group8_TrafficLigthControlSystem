@@ -20,6 +20,7 @@ public class NorthTraffic extends Thread{
         try{
             while(true){
                 trafficControl.allowNorth();
+                Thread.sleep(1000);
             }
             
         }catch(InterruptedException e){

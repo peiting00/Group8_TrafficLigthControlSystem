@@ -21,6 +21,7 @@ public class SouthTraffic extends Thread{
             
             while(true){
                 trafficControl.allowSouth();
+                Thread.sleep(1000);
             }
             
         }catch(InterruptedException e){

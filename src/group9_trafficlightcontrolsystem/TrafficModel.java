@@ -8,6 +8,7 @@ import javax.swing.Timer;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Image;
 /**
  *
  * @author user
@@ -645,65 +646,6 @@ public class TrafficModel extends javax.swing.JFrame {
     public void setEastTotalCar(int total){
         east.setText("Total Car:"+String.valueOf(total));
     }
-    
-    
-//    public void setNorthToGreen(){
-//        //先set其他light 去red
-//        redlight_goNorth.setBackground(Color.white);
-//        yellowlight_goNorth.setBackground(Color.white);
-//        greenlight_goNorth.setBackground(Color.green);
-//        //set other light to red
-//        redlight_goSouth.setBackground(Color.red);
-//        redlight_goEast.setBackground(Color.red);
-//        redlight_goWest.setBackground(Color.red);
-//        //set other GREEN to WHITE
-//        greenlight_goSouth.setBackground(Color.white);
-//        greenlight_goEast.setBackground(Color.white);
-//        greenlight_goWest.setBackground(Color.white);
-//        
-//    }
-//    
-//    public void setSouthToGreen(){
-//        redlight_goSouth.setBackground(Color.white);
-//        yellowlight_goSouth.setBackground(Color.white);
-//        greenlight_goSouth.setBackground(Color.green);
-//        //set other light to red
-//        redlight_goNorth.setBackground(Color.red);
-//        redlight_goEast.setBackground(Color.red);
-//        redlight_goWest.setBackground(Color.red);
-//        //set other GREEN to WHITE
-//        greenlight_goNorth.setBackground(Color.white);
-//        greenlight_goEast.setBackground(Color.white);
-//        greenlight_goWest.setBackground(Color.white);
-//    }
-//    
-//    public void setEastToGreen(){
-//        redlight_goEast.setBackground(Color.white);
-//        yellowlight_goEast.setBackground(Color.white);
-//        greenlight_goEast.setBackground(Color.green);
-//        //set other light to red
-//        redlight_goNorth.setBackground(Color.red);
-//        redlight_goSouth.setBackground(Color.red);
-//        redlight_goWest.setBackground(Color.red);
-//        //set other GREEN to WHITE
-//        greenlight_goSouth.setBackground(Color.white);
-//        greenlight_goNorth.setBackground(Color.white);
-//        greenlight_goWest.setBackground(Color.white);
-//    }
-//    
-//    public void setWestToGreen(){
-//        redlight_goWest.setBackground(Color.white);
-//        yellowlight_goWest.setBackground(Color.white);
-//        greenlight_goWest.setBackground(Color.green);
-//        //set other light to red
-//        redlight_goNorth.setBackground(Color.red);
-//        redlight_goEast.setBackground(Color.red);
-//        redlight_goSouth.setBackground(Color.red);
-//        //set other GREEN to WHITE
-//        greenlight_goSouth.setBackground(Color.white);
-//        greenlight_goNorth.setBackground(Color.white);
-//        greenlight_goEast.setBackground(Color.white);
-//    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        
