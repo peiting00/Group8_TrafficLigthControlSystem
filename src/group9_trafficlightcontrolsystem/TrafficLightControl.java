@@ -88,7 +88,7 @@ public class TrafficLightControl {
     }
 
     public synchronized void allowNorth() throws InterruptedException {
-        while (!green.equals("N") || pedestrain==true) {
+        while (!green.equals("N")) {
             wait();
         }
 
@@ -125,7 +125,7 @@ public class TrafficLightControl {
     }
 
     public synchronized void allowEast() throws InterruptedException {
-        while (!green.equals("E")) {
+        while (!green.equals("E")||pedestrain==true) {
             wait();
         }
         if (!eastQueue.isEmpty()) {

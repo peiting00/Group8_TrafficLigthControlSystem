@@ -589,7 +589,7 @@ public class TrafficModel extends javax.swing.JFrame {
                 readyToYellow = yellowlight_West;
                 readyToRed = redlight_West;
             }
-            else if(occupied.equals("P")){
+            else if(occupied.equals("E")){
                 currentGreen = greenlight_East;
                 readyToYellow = yellowlight_East;
                 readyToRed = redlight_East;
