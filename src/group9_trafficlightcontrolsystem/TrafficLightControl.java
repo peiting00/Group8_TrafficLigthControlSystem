@@ -23,10 +23,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class TrafficLightControl {
 
     TrafficModel tm = new TrafficModel();
-//    List<CarList> carList_North = new ArrayList<>();   
-//    List<CarList> carList_South= new ArrayList<>();   
-//    List<CarList> carList_East = new ArrayList<>();   
-//    List<CarList> carList_West = new ArrayList<>();   
+
     Queue<String> northQueue = new LinkedBlockingDeque<String>();
     Queue<String> southQueue = new LinkedBlockingDeque<String>();
     Queue<String> eastQueue = new LinkedBlockingDeque<String>();
@@ -44,9 +41,8 @@ public class TrafficLightControl {
     }
 
     public synchronized void allowDirectionByTimer() throws InterruptedException {
-        green = seqDirection[currentIndex];//Set Which Traffic Light is Green
+        green = seqDirection[currentIndex]; //Set Which Traffic Light is Green
         currentIndex = (currentIndex + 1) % seqDirection.length;
-        //System.out.println("            Allowing " + occupied + " to go");
 
         tm.setWhichDirectionToColor(green, "G");
 
@@ -67,28 +63,6 @@ public class TrafficLightControl {
         }
         tm.setInstruction(instructionToGUI);
 
-//        switch(occupied){
-//            case("N"):
-//                tm.setNorthToGreen();
-//                System.out.println("========North is Green");
-//                //tm.setBackground(Color.yellow);
-//                break;
-//            case("S"):
-//                tm.setSouthToGreen();
-//                System.out.println("========South is Green");
-//                //tm.setBackground(Color.yellow);
-//                break;
-//            case("E"):
-//                tm.setEastToGreen();
-//                System.out.println("========East is Green");
-//                //tm.setBackground(Color.yellow);
-//                break;
-//            case("W"):
-//                tm.setWestToGreen();
-//                System.out.println("========West is Green");
-//                //tm.setBackground(Color.yellow);
-//                break;    
-//        }
         System.out.println("========================\n"+instructionToGUI+"\n========================");
         notify();
 
