@@ -19,7 +19,8 @@ public class Pedestrain extends Thread{
     public void run(){
         
         try{
-            Thread.sleep(3000);
+            Thread.sleep(13000);
+            trafficControl.allowPedestrain();
         }
         catch(InterruptedException e){
             e.printStackTrace();

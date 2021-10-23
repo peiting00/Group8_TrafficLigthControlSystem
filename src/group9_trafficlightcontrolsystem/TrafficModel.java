@@ -41,6 +41,11 @@ public class TrafficModel extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        greenlight_Pedestrain = new javax.swing.JLabel();
+        redlight_Pedestrain = new javax.swing.JLabel();
+        yellowlight_Pedestrain = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         trafficLightBackground_North = new javax.swing.JPanel();
         redlight_North = new javax.swing.JLabel();
@@ -114,15 +119,51 @@ public class TrafficModel extends javax.swing.JFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
+        jPanel12.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        greenlight_Pedestrain.setBackground(new java.awt.Color(255, 255, 255));
+        greenlight_Pedestrain.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        greenlight_Pedestrain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        greenlight_Pedestrain.setText("P");
+        greenlight_Pedestrain.setOpaque(true);
+        jPanel12.add(greenlight_Pedestrain, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 50, 40));
+
+        redlight_Pedestrain.setBackground(new java.awt.Color(255, 255, 255));
+        redlight_Pedestrain.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        redlight_Pedestrain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        redlight_Pedestrain.setText("P");
+        redlight_Pedestrain.setOpaque(true);
+        jPanel12.add(redlight_Pedestrain, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 50, 40));
+
+        yellowlight_Pedestrain.setBackground(new java.awt.Color(255, 255, 255));
+        yellowlight_Pedestrain.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        yellowlight_Pedestrain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        yellowlight_Pedestrain.setText("P");
+        yellowlight_Pedestrain.setOpaque(true);
+        jPanel12.add(yellowlight_Pedestrain, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 40));
+
+        jLabel6.setText("Pedestrain Crossing Light");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 280));
@@ -548,10 +589,14 @@ public class TrafficModel extends javax.swing.JFrame {
                 readyToYellow = yellowlight_West;
                 readyToRed = redlight_West;
             }
-            else{
+            else if(occupied.equals("P")){
                 currentGreen = greenlight_East;
                 readyToYellow = yellowlight_East;
                 readyToRed = redlight_East;
+            }else{
+                currentGreen = greenlight_Pedestrain;
+                readyToYellow = yellowlight_Pedestrain;
+                readyToRed = redlight_Pedestrain;
             }
             currentGreen.setBackground(colorToSet);
             readyToRed.setBackground(Color.white);
@@ -579,6 +624,9 @@ public class TrafficModel extends javax.swing.JFrame {
         
         if(!occupied.equals("E"))
             redlight_East.setBackground(Color.red);
+        
+        if(!occupied.equals("P"))
+            redlight_Pedestrain.setBackground(Color.red);
     }
 
     public void setInstruction(String instruction){
@@ -707,6 +755,7 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel eastCar4;
     private javax.swing.JLabel greenlight_East;
     private javax.swing.JLabel greenlight_North;
+    private javax.swing.JLabel greenlight_Pedestrain;
     private javax.swing.JLabel greenlight_South;
     private javax.swing.JLabel greenlight_West;
     private javax.swing.JLabel instruction;
@@ -715,9 +764,11 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -733,6 +784,7 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel northCar4;
     private javax.swing.JLabel redlight_East;
     private javax.swing.JLabel redlight_North;
+    private javax.swing.JLabel redlight_Pedestrain;
     private javax.swing.JLabel redlight_South;
     private javax.swing.JLabel redlight_West;
     private javax.swing.JLabel south;
@@ -752,6 +804,7 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel westCar4;
     private javax.swing.JLabel yellowlight_East;
     private javax.swing.JLabel yellowlight_North;
+    private javax.swing.JLabel yellowlight_Pedestrain;
     private javax.swing.JLabel yellowlight_South;
     private javax.swing.JLabel yellowlight_West;
     // End of variables declaration//GEN-END:variables
