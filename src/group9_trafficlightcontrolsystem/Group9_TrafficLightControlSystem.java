@@ -20,10 +20,9 @@ public class Group9_TrafficLightControlSystem {
      */
     
     public static void main(String[] args) {
-        
-        TrafficLightControl trafficControl = new TrafficLightControl();
+        TrafficModel tm = new TrafficModel();
+        TrafficLightControl trafficControl = new TrafficLightControl(tm);
        
-        
         Car cars = new Car(trafficControl);
         Thread car = new Thread(cars);
         car.start();
@@ -37,7 +36,7 @@ public class Group9_TrafficLightControlSystem {
         
         //TrafficLights trafficLights = new TrafficLights(trafficControl);
         //trafficLights.start();
-        NorthTraffic n = new NorthTraffic(trafficControl);
+        NorthTraffic n = new NorthTraffic(trafficControl, tm);
         n.start();
         
         SouthTraffic s = new SouthTraffic(trafficControl);

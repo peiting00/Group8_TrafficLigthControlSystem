@@ -396,7 +396,8 @@ public class TrafficModel extends javax.swing.JFrame {
         westCar4.setBackground(new java.awt.Color(0, 0, 0));
         westCar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         westCar4.setOpaque(true);
-        jPanel2.add(westCar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 60, 40));
+        westCar4.setVisible(false);
+        jPanel2.add(westCar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 60, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("W");
@@ -408,12 +409,14 @@ public class TrafficModel extends javax.swing.JFrame {
         westCar5.setBackground(new java.awt.Color(0, 0, 0));
         westCar5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         westCar5.setOpaque(true);
-        jPanel2.add(westCar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 60, 40));
+        westCar5.setVisible(false);
+        jPanel2.add(westCar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 60, 40));
 
         westCar6.setBackground(new java.awt.Color(0, 0, 0));
         westCar6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         westCar6.setOpaque(true);
-        jPanel2.add(westCar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 60, 40));
+        westCar6.setVisible(false);
+        jPanel2.add(westCar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, 40));
 
         jPanel6.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
 
@@ -487,16 +490,19 @@ public class TrafficModel extends javax.swing.JFrame {
         eastCar5.setBackground(new java.awt.Color(0, 0, 0));
         eastCar5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eastCar5.setOpaque(true);
+        eastCar5.setVisible(false);
         jPanel3.add(eastCar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 60, 40));
 
         eastCar6.setBackground(new java.awt.Color(0, 0, 0));
         eastCar6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eastCar6.setOpaque(true);
+        eastCar6.setVisible(false);
         jPanel3.add(eastCar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 60, 40));
 
         eastCar4.setBackground(new java.awt.Color(0, 0, 0));
         eastCar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eastCar4.setOpaque(true);
+        eastCar4.setVisible(false);
         jPanel3.add(eastCar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 60, 40));
 
         jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 310, -1));
@@ -504,16 +510,19 @@ public class TrafficModel extends javax.swing.JFrame {
         fromEast.setBackground(new java.awt.Color(0, 0, 0));
         fromEast.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fromEast.setOpaque(true);
+        fromEast.setVisible(false);
         jPanel6.add(fromEast, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 70, 40));
 
         toSouthOrWest.setBackground(new java.awt.Color(0, 0, 0));
         toSouthOrWest.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         toSouthOrWest.setOpaque(true);
+        toSouthOrWest.setVisible(false);
         jPanel6.add(toSouthOrWest, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 40, 60));
 
         toWest.setBackground(new java.awt.Color(0, 0, 0));
         toWest.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         toWest.setOpaque(true);
+        toWest.setVisible(false);
         jPanel6.add(toWest, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 70, 40));
 
         fromWest.setBackground(new java.awt.Color(0, 0, 0));
@@ -524,6 +533,7 @@ public class TrafficModel extends javax.swing.JFrame {
         toEast.setBackground(new java.awt.Color(0, 0, 0));
         toEast.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         toEast.setOpaque(true);
+        toEast.setVisible(false);
         jPanel6.add(toEast, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 70, 40));
 
         toNorthOrEast.setBackground(new java.awt.Color(0, 0, 0));
@@ -565,6 +575,7 @@ public class TrafficModel extends javax.swing.JFrame {
         southCar3.setBackground(new java.awt.Color(0, 0, 0));
         southCar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         southCar3.setOpaque(true);
+        southCar3.setVisible(false);
         jPanel4.add(southCar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 40, 57));
 
         southCar2.setBackground(new java.awt.Color(0, 0, 0));
@@ -575,6 +586,7 @@ public class TrafficModel extends javax.swing.JFrame {
         southCar4.setBackground(new java.awt.Color(0, 0, 0));
         southCar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         southCar4.setOpaque(true);
+        southCar4.setVisible(false);
         jPanel4.add(southCar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 40, 57));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -764,6 +776,24 @@ public class TrafficModel extends javax.swing.JFrame {
     public void toEastErase(){
         toEast.setVisible(false);
     }
+    public void eastCar4(){
+        eastCar4.setVisible(true);
+    }
+    public void eastCar4Erase(){
+        eastCar4.setVisible(false);
+    }
+    public void eastCar5(){
+        eastCar5.setVisible(true);
+    }
+    public void eastCar5Erase(){
+        eastCar5.setVisible(false);
+    }
+    public void eastCar6(){
+        eastCar6.setVisible(true);
+    }
+    public void eastCar6Erase(){
+        eastCar6.setVisible(false);
+    }
     
     
     public void toWest(){
@@ -771,6 +801,38 @@ public class TrafficModel extends javax.swing.JFrame {
     }
     public void toWestErase(){
         toWest.setVisible(false);
+    }
+    public void westCar4(){
+        westCar4.setVisible(true);
+    }
+    public void westCar4Erase(){
+        westCar4.setVisible(false);
+    }
+    public void westCar5(){
+        westCar5.setVisible(true);
+    }
+    public void westCar5Erase(){
+        westCar5.setVisible(false);
+    }
+    public void westCar6(){
+        westCar6.setVisible(true);
+    }
+    public void westCar6Erase(){
+        westCar6.setVisible(false);
+    }
+    
+    
+    public void southCar3(){
+        southCar3.setVisible(true);
+    }
+    public void southCar3Erase(){
+        southCar3.setVisible(false);
+    }
+    public void southCar4(){
+        southCar4.setVisible(true);
+    }
+    public void southCar4Erase(){
+        southCar4.setVisible(false);
     }
     
     

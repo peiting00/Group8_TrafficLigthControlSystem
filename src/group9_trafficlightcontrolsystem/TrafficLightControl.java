@@ -22,7 +22,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class TrafficLightControl {
 
-    TrafficModel tm = new TrafficModel();
+    TrafficModel tm;
 
     Queue<CarList> northQueue = new LinkedBlockingDeque<CarList>();
     Queue<CarList> southQueue = new LinkedBlockingDeque<CarList>();
@@ -37,8 +37,9 @@ public class TrafficLightControl {
     
     private int pedestrianNum = 0;
     
-    public TrafficLightControl() {
+    public TrafficLightControl(TrafficModel tm) {
         //tm = tm;
+        this.tm = tm;
         tm.setVisible(true);
     }
 
@@ -55,13 +56,17 @@ public class TrafficLightControl {
         notify();
  
         tm.setWhichDirectionToColor(green, "G");
-        
         displayWhichDirectionisTurningWhichColor ("GREEN");
     }
 
     public void setWhichDirectionToYellow() {
         tm.setWhichDirectionToColor(green, "Y");
         displayWhichDirectionisTurningWhichColor("YELLOW");
+    }
+    
+    public void setWhichDirectionToRed() {
+        tm.setWhichDirectionToColor(green, "R");
+        displayWhichDirectionisTurningWhichColor ("RED");
     }
     
     public void displayWhichDirectionisTurningWhichColor(String color){
@@ -76,40 +81,46 @@ public class TrafficLightControl {
         System.out.println("\n=============================\n"+ instructionToGUI + "\n=============================");
     }
 
-    public void setWhichDirectionToRed() {
-        tm.setWhichDirectionToColor(green, "R");
-        displayWhichDirectionisTurningWhichColor ("RED");
-    }
-
-    public synchronized void allowNorth() throws InterruptedException {
+    public synchronized CarList allowNorth() throws InterruptedException {
         while (!green.equals("N")) {
             wait();
         }
-
+        
+        CarList carLeft = null;
+        
         if (!northQueue.isEmpty()) {
-            for(CarList i : northQueue){
-                System.out.println(i.getCarID());
-            }
-            System.out.println("                North Car Leaving: " + northQueue.poll().getCarID());
+//            for(CarList i : northQueue){
+//                System.out.println(i.getCarID());
+//            }
+
+            carLeft = northQueue.poll();
+            System.out.println("                North Car Leaving: " + carLeft.getCarID());
             tm.addCarToNorthQueue(northQueue);
-            
         }
         
         tm.setNorthTotalCar(northQueue.size());// update total car in GUI
         notify();
+        
+        return carLeft;
     }
 
-    public synchronized void allowSouth() throws InterruptedException {
+    public synchronized CarList allowSouth() throws InterruptedException {
         while (!green.equals("S")) {
             wait();
         }
         
+        CarList carLeft = null;
+        
         if (!southQueue.isEmpty()) {
-            System.out.println("                South Car Leaving: " + southQueue.poll().getCarID());
+            carLeft = southQueue.poll();
+            System.out.println("                South Car Leaving: " + carLeft.getCarID());
+            //tm.addCarToSouthQueue(southQueue);
         }
         
         tm.setSouthTotalCar(southQueue.size());// update total car in GUI
         notify();
+        
+        return carLeft;
     }
 
     public synchronized void allowWest() throws InterruptedException {

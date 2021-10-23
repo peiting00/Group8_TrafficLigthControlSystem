@@ -11,16 +11,24 @@ package group9_trafficlightcontrolsystem;
  */
 public class NorthTraffic extends Thread{
      TrafficLightControl trafficControl;
+     TrafficModel tm;
     
-    public NorthTraffic(TrafficLightControl trafficControl){
+    public NorthTraffic(TrafficLightControl trafficControl, TrafficModel tm){
         this.trafficControl = trafficControl;
+        this.tm = tm;
     }
     
     public void run(){
         try{
             while(true){
-                trafficControl.allowNorth();
+                CarList carLeft = trafficControl.allowNorth();
                 Thread.sleep(1000);
+                
+                if(carLeft != null){
+                    CarMovement movement = new CarMovement(carLeft.getFrom(), carLeft.getGoTo(), tm);
+                    movement.start();
+                }
+                
             }
             
         }catch(InterruptedException e){
