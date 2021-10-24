@@ -39,13 +39,13 @@ public class Group9_TrafficLightControlSystem {
         NorthTraffic n = new NorthTraffic(trafficControl, tm);
         n.start();
         
-        SouthTraffic s = new SouthTraffic(trafficControl);
+        SouthTraffic s = new SouthTraffic(trafficControl, tm);
         s.start();
         
-        EastTraffic e = new EastTraffic(trafficControl);
+        EastTraffic e = new EastTraffic(trafficControl, tm);
         e.start();
         
-        WestTraffic w = new WestTraffic(trafficControl);
+        WestTraffic w = new WestTraffic(trafficControl, tm);
         w.start();
         
         AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl);

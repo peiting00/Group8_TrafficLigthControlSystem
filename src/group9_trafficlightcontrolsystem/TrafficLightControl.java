@@ -67,6 +67,8 @@ public class TrafficLightControl {
     public void setWhichDirectionToRed() {
         tm.setWhichDirectionToColor(green, "R");
         displayWhichDirectionisTurningWhichColor ("RED");
+        
+        green = "stop";
     }
     
     public void displayWhichDirectionisTurningWhichColor(String color){
@@ -114,7 +116,7 @@ public class TrafficLightControl {
         if (!southQueue.isEmpty()) {
             carLeft = southQueue.poll();
             System.out.println("                South Car Leaving: " + carLeft.getCarID());
-            //tm.addCarToSouthQueue(southQueue);
+            tm.addCarToSouthQueue(southQueue);
         }
         
         tm.setSouthTotalCar(southQueue.size());// update total car in GUI
@@ -123,30 +125,42 @@ public class TrafficLightControl {
         return carLeft;
     }
 
-    public synchronized void allowWest() throws InterruptedException {
+    public synchronized CarList allowWest() throws InterruptedException {
         while (!green.equals("W")) {
             wait();
         }
         
+        CarList carLeft = null;
+        
         if (!westQueue.isEmpty()) {
-            System.out.println("                West Car Leaving: " + westQueue.poll().getCarID());
-        }
+            carLeft = westQueue.poll();
+            System.out.println("                West Car Leaving: " + carLeft.getCarID());
+            tm.addCarToWestQueue(westQueue);
+        }     
         
         tm.setWestTotalCar(westQueue.size());// update total car in GUI
         notify();
+        
+        return carLeft;
     }
 
-    public synchronized void allowEast() throws InterruptedException {
+    public synchronized CarList allowEast() throws InterruptedException {
         while (!green.equals("E")) {
             wait();
         }
         
+        CarList carLeft = null;
+        
         if (!eastQueue.isEmpty()) {
-            System.out.println("                East Car Leaving: " + eastQueue.poll().getCarID());
-        }
+            carLeft = eastQueue.poll();
+            System.out.println("                East Car Leaving: " + carLeft.getCarID());
+            tm.addCarToEastQueue(eastQueue);
+        }       
         
         tm.setEastTotalCar(eastQueue.size());// update total car in GUI
         notify();
+        
+        return carLeft;
     }
 
     public synchronized void allowPedestrain() throws InterruptedException {
@@ -193,16 +207,19 @@ public class TrafficLightControl {
                 //carList_South.add(new CarList(this,carID,from,goTo));
                 southQueue.add(car);
                 tm.setSouthTotalCar(southQueue.size());
+                tm.addCarToSouthQueue(southQueue);
                 break;
             case ("E"):
                 //carList_East.add(new CarList(this,carID,from,goTo));
                 eastQueue.add(car);
                 tm.setEastTotalCar(eastQueue.size());
+                tm.addCarToEastQueue(eastQueue);
                 break;
             case ("W"):
                 //carList_West.add(new CarList(this,carID,from,goTo));
                 westQueue.add(car);
                 tm.setWestTotalCar(westQueue.size());
+                tm.addCarToWestQueue(westQueue);
                 break;
         }
 

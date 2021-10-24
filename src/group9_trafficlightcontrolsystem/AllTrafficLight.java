@@ -27,14 +27,15 @@ public class AllTrafficLight extends Thread{
     public void run(){
         try{
             while(true){
-                Thread.sleep(1000);
+                
                 trafficControl.allowDirectionByTimer();
-                Thread.sleep(3000); 
+                Thread.sleep(10000); 
                 
                 trafficControl.setWhichDirectionToYellow();
                 Thread.sleep(3000); 
                 
                 trafficControl.setWhichDirectionToRed();
+                Thread.sleep(3000);
             }
             
         }catch(InterruptedException e){

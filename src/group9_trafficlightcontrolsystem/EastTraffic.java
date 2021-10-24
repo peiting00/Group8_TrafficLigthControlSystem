@@ -11,17 +11,23 @@ package group9_trafficlightcontrolsystem;
  */
 public class EastTraffic extends Thread{
      TrafficLightControl trafficControl;
+     TrafficModel tm;
     
-    public EastTraffic(TrafficLightControl trafficControl){
+    public EastTraffic(TrafficLightControl trafficControl, TrafficModel tm){
         this.trafficControl = trafficControl;
+        this.tm = tm;
     }
     
     public void run(){
         try{
-            
             while(true){
-                trafficControl.allowEast();
+                CarList carLeft = trafficControl.allowEast();
                 Thread.sleep(1000);
+                                
+                if(carLeft != null){
+                    CarMovement movement = new CarMovement(carLeft.getFrom(), carLeft.getGoTo(), tm);
+                    movement.start();
+                }
             }
             
         }catch(InterruptedException e){

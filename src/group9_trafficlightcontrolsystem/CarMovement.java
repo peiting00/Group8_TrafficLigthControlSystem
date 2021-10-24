@@ -29,23 +29,60 @@ public class CarMovement extends Thread{
                         toEast();
                     }
                     else if(goTo.equals("S")){
-                        tm.toSouthOrWest();
-                        Thread.sleep(1000);
-                        tm.toSouthOrWestErase();
-                        
+                        toSouthOrWest();   
                         toSouth();
                     }
                     else{
-                        tm.toSouthOrWest();
-                        Thread.sleep(1000);
-                        tm.toSouthOrWestErase();
-                        
+                        toSouthOrWest();   
                         toWest();
                     }
                     
                     break;
                 
                 case "S":
+                    if(goTo.equals("E")){
+                        toNorthOrEast();
+                        toEast();
+                    }
+                    else if(goTo.equals("W")){
+                        toWest();
+                    }
+                    else{
+                        toNorthOrEast();
+                        toNorth();
+                    }
+                    break;
+                    
+                case "E":
+                    fromEast();
+                    
+                    if(goTo.equals("S")){
+                        toSouth();
+                    }
+                    else if(goTo.equals("W")){
+                        toWest();
+                    }
+                    else{
+                        toNorthOrEast();
+                        toNorth();
+                    }
+                    
+                    break;
+                    
+                case "W":
+                    fromWest();
+                    
+                    if(goTo.equals("S")){
+                        toSouthOrWest();
+                        toSouth();
+                    }
+                    else if(goTo.equals("E")){
+                        toEast();
+                    }
+                    else{
+                        toNorth();
+                    }
+                    
                     break;
             }
             
@@ -53,6 +90,18 @@ public class CarMovement extends Thread{
             
         }
         
+    }
+    
+    public void toNorthOrEast() throws InterruptedException{
+        tm.toNorthOrEast();
+        Thread.sleep(1000);
+        tm.toNorthOrEastErase();
+    }
+    
+    public void toSouthOrWest() throws InterruptedException{
+        tm.toSouthOrWest();
+        Thread.sleep(1000);
+        tm.toSouthOrWestErase();
     }
     
     public void toEast() throws InterruptedException{
@@ -99,5 +148,31 @@ public class CarMovement extends Thread{
         tm.southCar4();
         Thread.sleep(1000);
         tm.southCar4Erase();
+    }
+    
+    public void toNorth() throws InterruptedException{
+        tm.northCar4();
+        Thread.sleep(1000);
+        tm.northCar4Erase();
+        
+        tm.northCar5();
+        Thread.sleep(1000);
+        tm.northCar5Erase();
+        
+        tm.northCar6();
+        Thread.sleep(1000);
+        tm.northCar6Erase();
+    }
+    
+    public void fromEast() throws InterruptedException {
+        tm.fromEast();
+        Thread.sleep(1000);
+        tm.fromEastErase();
+    }
+    
+    public void fromWest() throws InterruptedException{
+        tm.fromWest();
+        Thread.sleep(1000);
+        tm.fromWestErase();
     }
 }
