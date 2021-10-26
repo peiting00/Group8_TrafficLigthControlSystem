@@ -163,7 +163,7 @@ public class TrafficModel extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         jLabel6.setText("Pedestrian Crossing Light");
 
-        pedestrian.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        pedestrian.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pedestrian.setText("Pedestrian");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -178,9 +178,7 @@ public class TrafficModel extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pedestrian)))
+                    .addComponent(pedestrian))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -192,7 +190,7 @@ public class TrafficModel extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(pedestrian)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 280));

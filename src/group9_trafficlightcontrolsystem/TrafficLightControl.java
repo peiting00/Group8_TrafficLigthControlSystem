@@ -29,7 +29,6 @@ public class TrafficLightControl {
     
     private final String[] seqDirection = {"N", "E", "S", "W", "P"};//{"N", "E", "S", "W"};
     private int currentIndex = 0;
-    
     private int pedestrianNum = 0;
     
     public TrafficLightControl(TrafficModel tm) {
@@ -65,6 +64,8 @@ public class TrafficLightControl {
         tm.setWhichDirectionToColor(green, "R");//turn traffic light to Red in GUI
         displayWhichDirectionisTurningWhichColor ("RED");
         
+        if(green.equals("P"))
+            tm.setPedestrian("Pedestrian Crossing Light Inactive");//update GUI pedestrian
         green = "stop";
     }
     
@@ -175,9 +176,9 @@ public class TrafficLightControl {
             wait();
         }
         if(pedestrianNum != 0 && green.equals("P")){
-            System.out.println("                Pedestrian Leaving:" + pedestrianNum + " | Pedestrian(s) Left:"+ --pedestrianNum);
+            System.out.println("                Pedestrian Leaving....." + " | Pedestrian(s) Left:"+ --pedestrianNum);
             //pedestrianNum--;
-            tm.setPedestrian("Pedestrian Crossing Light Inactive");//update GUI pedestrian
+            
         }
         notify();
     }
@@ -234,12 +235,12 @@ public class TrafficLightControl {
 * To add pedestrian and update GUI
 * ***************************************************************/     
     public synchronized void generatePedestrian(){
-        pedestrianNum++;
         String pedestrianInstruction="Pedestrain Crossing Button has been Pushed";
-        System.out.println("\n=======================================\n"
-                + pedestrianInstruction);
-        System.out.println("Total Pedestrain:" + pedestrianNum +
-                "\n=======================================\n");
+        if(pedestrianNum==0)
+            System.out.println("\n=======================================\n"
+                + pedestrianInstruction+"\n=======================================\n");
+        pedestrianNum++;
+        System.out.println("Pefestrian Coming...    |  Total Pedestrain:" + pedestrianNum);
         tm.setPedestrian(pedestrianInstruction);//update GUI pedestrian number
         notify();
     }

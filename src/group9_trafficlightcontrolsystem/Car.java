@@ -39,7 +39,7 @@ public class Car implements Runnable{
     public void run(){
         while(true){
             try {
-                Thread.sleep(1000);
+                Thread.sleep((int)(Math.random()*3000));
                 CarList car = new CarList(generateCarPlateNumber(), "", "");
                 
                 trafficControl.generateCarDirection(car);
