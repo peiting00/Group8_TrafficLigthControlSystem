@@ -22,14 +22,15 @@ public class Pedestrian implements Runnable{
     TrafficLightControl trafficControl;
     private String from;
     
-    public Pedestrian(TrafficLightControl trafficControl){
+    public Pedestrian(TrafficLightControl trafficControl,TrafficModel tm){
         this.trafficControl = trafficControl;
+        this.tm=tm;
     }
     
     public void run(){       
         while(true){
             try {
-                Thread.sleep(60000);
+                Thread.sleep((int)(Math.random()*600000));
                 trafficControl.generatePedestrian();
             }catch(InterruptedException ex){
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);

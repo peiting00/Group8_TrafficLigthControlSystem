@@ -5,15 +5,10 @@
  */
 package group9_trafficlightcontrolsystem;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
@@ -38,11 +33,13 @@ public class TrafficLightControl {
     private int pedestrianNum = 0;
     
     public TrafficLightControl(TrafficModel tm) {
-        //tm = tm;
         this.tm = tm;
-        tm.setVisible(true);
+        tm.setVisible(true); //initialize the Java GUI
     }
-
+    
+/***************************************************************
+* Traffic Light Sequence Control
+* ***************************************************************/ 
     public synchronized void allowDirectionByTimer() throws InterruptedException {
         green = seqDirection[currentIndex]; //Set Which Traffic Light is Green
         
@@ -55,17 +52,17 @@ public class TrafficLightControl {
         
         notify();
  
-        tm.setWhichDirectionToColor(green, "G");
+        tm.setWhichDirectionToColor(green, "G");//turn traffic light to Green in GUI
         displayWhichDirectionisTurningWhichColor ("GREEN");
     }
 
     public void setWhichDirectionToYellow() {
-        tm.setWhichDirectionToColor(green, "Y");
+        tm.setWhichDirectionToColor(green, "Y");//turn traffic light to Yellow in GUI
         displayWhichDirectionisTurningWhichColor("YELLOW");
     }
     
     public void setWhichDirectionToRed() {
-        tm.setWhichDirectionToColor(green, "R");
+        tm.setWhichDirectionToColor(green, "R");//turn traffic light to Red in GUI
         displayWhichDirectionisTurningWhichColor ("RED");
         
         green = "stop";
@@ -80,9 +77,12 @@ public class TrafficLightControl {
         String instructionToGUI = direction + " Traffic Light " + color;
         tm.setInstruction(instructionToGUI);
         
-        System.out.println("\n=============================\n"+ instructionToGUI + "\n=============================");
+        System.out.println("\n=============================\n"+ 
+                instructionToGUI + "\n=============================");
     }
-
+/***************************************************************
+* Allow car in North Traffic Light to GO
+* ***************************************************************/ 
     public synchronized CarList allowNorth() throws InterruptedException {
         while (!green.equals("N")) {
             wait();
@@ -96,7 +96,7 @@ public class TrafficLightControl {
 //            }
 
             carLeft = northQueue.poll();
-            System.out.println("                North Car Leaving: " + carLeft.getCarID());
+            System.out.println("                North Car Leaving: " + carLeft.getCarID()+" | Total Car Left: "+northQueue.size());
             tm.addCarToNorthQueue(northQueue);
         }
         
@@ -105,7 +105,9 @@ public class TrafficLightControl {
         
         return carLeft;
     }
-
+/***************************************************************
+* Allow car in South Traffic Light to GO
+* ***************************************************************/ 
     public synchronized CarList allowSouth() throws InterruptedException {
         while (!green.equals("S")) {
             wait();
@@ -115,7 +117,7 @@ public class TrafficLightControl {
         
         if (!southQueue.isEmpty()) {
             carLeft = southQueue.poll();
-            System.out.println("                South Car Leaving: " + carLeft.getCarID());
+            System.out.println("                South Car Leaving: " + carLeft.getCarID()+" | Total Car Left: "+southQueue.size());
             tm.addCarToSouthQueue(southQueue);
         }
         
@@ -124,17 +126,17 @@ public class TrafficLightControl {
         
         return carLeft;
     }
-
+/***************************************************************
+* Allow car in West Traffic Light to GO
+* ***************************************************************/ 
     public synchronized CarList allowWest() throws InterruptedException {
         while (!green.equals("W")) {
             wait();
         }
-        
         CarList carLeft = null;
-        
         if (!westQueue.isEmpty()) {
             carLeft = westQueue.poll();
-            System.out.println("                West Car Leaving: " + carLeft.getCarID());
+            System.out.println("                West Car Leaving: " + carLeft.getCarID()+" | Total Car Left: "+westQueue.size());
             tm.addCarToWestQueue(westQueue);
         }     
         
@@ -143,7 +145,9 @@ public class TrafficLightControl {
         
         return carLeft;
     }
-
+/***************************************************************
+* Allow car in East Traffic Light to GO
+* ***************************************************************/ 
     public synchronized CarList allowEast() throws InterruptedException {
         while (!green.equals("E")) {
             wait();
@@ -153,7 +157,7 @@ public class TrafficLightControl {
         
         if (!eastQueue.isEmpty()) {
             carLeft = eastQueue.poll();
-            System.out.println("                East Car Leaving: " + carLeft.getCarID());
+            System.out.println("                East Car Leaving: " + carLeft.getCarID()+" | Total Car Left: "+eastQueue.size());
             tm.addCarToEastQueue(eastQueue);
         }       
         
@@ -162,24 +166,28 @@ public class TrafficLightControl {
         
         return carLeft;
     }
-
-    public synchronized void allowPedestrain() throws InterruptedException {
+/***************************************************************
+* Allow Pedestrian to cross
+* ***************************************************************/ 
+    public synchronized void allowPedestrian() throws InterruptedException {
         
         while(!green.equals("P")){
             wait();
         }
-        
         if(pedestrianNum != 0 && green.equals("P")){
-            System.out.println("                Pedestrian crossing :" + pedestrianNum + " Pedestrian(s) left");
-            pedestrianNum--;
+            System.out.println("                Pedestrian Leaving:" + pedestrianNum + " | Pedestrian(s) Left:"+ --pedestrianNum);
+            //pedestrianNum--;
+            tm.setPedestrian("Pedestrian Crossing Light Inactive");//update GUI pedestrian
         }
-        
         notify();
     }
 
+/***************************************************************
+* To auto generate car for the 4 direction traffic light and update GUI
+* ***************************************************************/  
     public synchronized void generateCarDirection(CarList car) throws InterruptedException {
 
-        String[] carDirection = {"N", "E", "S", "W"};
+        String[] carDirection = {"N", "E", "S", "W"};//available directions
         ArrayList<String> carAvailableFrom = new ArrayList<String>(Arrays.asList(carDirection));
 
         String from = "";
@@ -192,45 +200,47 @@ public class TrafficLightControl {
         carAvailableFrom.remove(from);
         int randomGoTo = (int) (Math.random() * carAvailableFrom.size());
         goTo = carAvailableFrom.get(randomGoTo);
-        car.setGoTo(goTo);
         
         carAvailableFrom.add(from);//add back the direction
             
         switch (from) {
-            case ("N"):
-                
-                northQueue.add(car);
-                tm.setNorthTotalCar(northQueue.size());
-                tm.addCarToNorthQueue(northQueue);
+            case ("N")://North Traffic Light
+                northQueue.add(car);//add car to queue for North traffic light
+                tm.setNorthTotalCar(northQueue.size());//set GUI total car
+                tm.addCarToNorthQueue(northQueue);//set GUI car model
                 break;
-            case ("S"):
-                //carList_South.add(new CarList(this,carID,from,goTo));
-                southQueue.add(car);
-                tm.setSouthTotalCar(southQueue.size());
-                tm.addCarToSouthQueue(southQueue);
+            case ("S")://south Traffic Light
+                southQueue.add(car);//add car to queue for South traffic light
+                tm.setSouthTotalCar(southQueue.size());//set GUI total car
+                tm.addCarToSouthQueue(southQueue);//set GUI car model
                 break;
-            case ("E"):
-                //carList_East.add(new CarList(this,carID,from,goTo));
-                eastQueue.add(car);
-                tm.setEastTotalCar(eastQueue.size());
-                tm.addCarToEastQueue(eastQueue);
+            case ("E")://East Traffic Light
+                eastQueue.add(car);//add car to queue for East traffic light
+                tm.setEastTotalCar(eastQueue.size());//set GUI total car
+                tm.addCarToEastQueue(eastQueue);//set GUI car model
                 break;
-            case ("W"):
-                //carList_West.add(new CarList(this,carID,from,goTo));
-                westQueue.add(car);
-                tm.setWestTotalCar(westQueue.size());
-                tm.addCarToWestQueue(westQueue);
+            case ("W")://West Traffic Light
+                westQueue.add(car);//add car to queue for West traffic light
+                tm.setWestTotalCar(westQueue.size());//set GUI total car
+                tm.addCarToWestQueue(westQueue);//set GUI car model
                 break;
         }
-
+        //Display the incoming car from which direction to which direction
+        //with random car plate number
         System.out.println(from + " -> " + goTo + ", Car Plate Number:" + car.getCarID());
         notify();
     }
-    
+/***************************************************************
+* To add pedestrian and update GUI
+* ***************************************************************/     
     public synchronized void generatePedestrian(){
         pedestrianNum++;
-        
-        System.out.println("Pedestrian Amount:" + pedestrianNum);
+        String pedestrianInstruction="Pedestrain Crossing Button has been Pushed";
+        System.out.println("\n=======================================\n"
+                + pedestrianInstruction);
+        System.out.println("Total Pedestrain:" + pedestrianNum +
+                "\n=======================================\n");
+        tm.setPedestrian(pedestrianInstruction);//update GUI pedestrian number
         notify();
     }
 }

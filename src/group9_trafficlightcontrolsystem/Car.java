@@ -36,26 +36,6 @@ public class Car implements Runnable{
         this.trafficControl = trafficControl;
     }
     
-//    public void setFrom(String from){
-//        this.from = from;
-//    }
-//    
-//    public void setGoTo(String goTo){
-//        this.goTo = goTo;
-//    }
-//    
-//    public String getCarID(){
-//        return carID;
-//    }
-//    
-//    public String getFrom(){
-//        return from;
-//    }
-//    
-//    public String goTo(){
-//        return goTo;
-//    }
-    
     public void run(){
         while(true){
             try {
@@ -68,7 +48,9 @@ public class Car implements Runnable{
             }
         }
     }
-      
+/***************************************************************
+* To generate car with random car plate number
+* ***************************************************************/       
     public String generateCarPlateNumber(){
         String randomPlate="";
         for(int i =0;i<3;i++){

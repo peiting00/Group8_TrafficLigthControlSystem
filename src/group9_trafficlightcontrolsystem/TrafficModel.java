@@ -50,6 +50,8 @@ public class TrafficModel extends javax.swing.JFrame {
         redlight_Pedestrain = new javax.swing.JLabel();
         yellowlight_Pedestrain = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        pedestrian = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         trafficLightBackground_North = new javax.swing.JPanel();
         redlight_North = new javax.swing.JLabel();
@@ -65,7 +67,6 @@ public class TrafficModel extends javax.swing.JFrame {
         northCar4 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         instruction = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -159,18 +160,28 @@ public class TrafficModel extends javax.swing.JFrame {
         yellowlight_Pedestrain.setOpaque(true);
         jPanel12.add(yellowlight_Pedestrain, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 40));
 
-        jLabel6.setText("Pedestrain Crossing Light");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jLabel6.setText("Pedestrian Crossing Light");
+
+        pedestrian.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        pedestrian.setText("Pedestrian");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pedestrian)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,10 +190,28 @@ public class TrafficModel extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(pedestrian)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 280));
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 262, Short.MAX_VALUE)
+        );
+
+        jPanel7.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 300, 270));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -298,22 +327,6 @@ public class TrafficModel extends javax.swing.JFrame {
         );
 
         jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 310, 280));
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 300, 270));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -672,7 +685,9 @@ public class TrafficModel extends javax.swing.JFrame {
 //       }
 //   }
 //});
-
+/***************************************************************
+* To set traffic light to GREEN/YELLOW
+* ***************************************************************/  
     public void setWhichDirectionToColor(String occupied, String color){
         Color colorToSet = color.equals("G") ? Color.green : 
                             color.equals("Y") ? Color.yellow : Color.red;
@@ -718,7 +733,10 @@ public class TrafficModel extends javax.swing.JFrame {
             readyToRed.setBackground(colorToSet);
         }
     }
-    
+
+/***************************************************************
+* To set traffic light to RED
+* ***************************************************************/    
     public void setOtherDirectionToRed(String occupied){
         if(!occupied.equals("N"))
             redlight_North.setBackground(Color.red);
@@ -735,11 +753,16 @@ public class TrafficModel extends javax.swing.JFrame {
         if(!occupied.equals("P"))
             redlight_Pedestrain.setBackground(Color.red);
     }
-
+    
+/***************************************************************
+* To display the which traffic light is GREEN/YELLOW/RED
+* ***************************************************************/
     public void setInstruction(String instruction){
         this.instruction.setText(instruction);
     }
-    
+/***************************************************************
+* To display total car/pedestrian waiting in each traffic light
+* ***************************************************************/    
     public void setNorthTotalCar(int total){
         north.setText("Total Car:"+String.valueOf(total));
     }
@@ -752,7 +775,13 @@ public class TrafficModel extends javax.swing.JFrame {
     public void setEastTotalCar(int total){
         east.setText("Total Car:"+String.valueOf(total));
     }
+    public void setPedestrian(String instruction){
+        pedestrian.setText(instruction);
+    }
     
+/***************************************************************
+* 
+* ***************************************************************/    
     Boolean northFirst = true;
     Boolean northSecond = true;
     Boolean northThird = true;
@@ -943,6 +972,10 @@ public class TrafficModel extends javax.swing.JFrame {
         toNorthOrEast.setVisible(false);
     }
     
+    /***************************************************************
+    *
+    * 
+    * ***************************************************************/
     public void fromEast(){
         fromEast.setVisible(true);
     }
@@ -1040,6 +1073,7 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel northCar4;
     private javax.swing.JLabel northCar5;
     private javax.swing.JLabel northCar6;
+    private javax.swing.JLabel pedestrian;
     private javax.swing.JLabel redlight_East;
     private javax.swing.JLabel redlight_North;
     private javax.swing.JLabel redlight_Pedestrain;
