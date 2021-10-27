@@ -57,7 +57,7 @@ public class Group9_TrafficLightControlSystem {
         WestTraffic w = new WestTraffic(trafficControl, tm);
         w.start();
         
-        AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl);
+        AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl, tm);
         AllTrafficLights.start();
         
         

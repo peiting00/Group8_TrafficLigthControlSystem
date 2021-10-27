@@ -60,6 +60,7 @@ public class TrafficLightControl {
         queuesSize.add(southQueue.size());
         queuesSize.add(eastQueue.size());
         queuesSize.add(westQueue.size());
+        queuesSize.add(pedestrianNum);
         
         return queuesSize;
     }

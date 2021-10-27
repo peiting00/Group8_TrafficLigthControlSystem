@@ -996,6 +996,11 @@ public class TrafficModel extends javax.swing.JFrame {
     public void fromWestErase(){
         fromWest.setVisible(false);
     }
+    
+    
+    public void setTiming(int timing){
+        secondDisplay.setText(timing-1 + " second(s) left");
+    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        

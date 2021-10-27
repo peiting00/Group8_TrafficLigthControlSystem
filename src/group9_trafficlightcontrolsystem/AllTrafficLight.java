@@ -15,10 +15,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class AllTrafficLight extends Thread{
     
+    TrafficModel tm;
     TrafficLightControl trafficControl;
     
-    public AllTrafficLight(TrafficLightControl trafficControl){
+    public AllTrafficLight(TrafficLightControl trafficControl, TrafficModel tm){
         this.trafficControl = trafficControl;
+        this.tm = tm;
+        
         System.out.println("*********** WELCOME TO BOWEI & PEITING TRAFFIC LIGHT CONTROL SYSTEM ***********");
         System.out.println("* This a 4 junctions traffic light control system. ");
         System.out.println("* Scenario 1: ");
@@ -29,19 +32,23 @@ public class AllTrafficLight extends Thread{
         int currentIndex = 0; //North
         try{
             while(true){
-                int durationForGreen = 5000;
+                int durationForGreen = 6000;
                 ArrayList<Integer> queuesSize = trafficControl.allowDirectionByTimer();
                 
+                System.out.println("current index " + currentIndex);
                 if(currentIndex != 4){
+                    
                     int sumAllQueuesSize = 0;
-
-                    for (int i = 0; i < queuesSize.size()-1; i++) 
+                    queuesSize.remove(queuesSize.get(4));
+                    
+                    for (int i = 0; i < queuesSize.size(); i++) 
                         sumAllQueuesSize += queuesSize.get(i);
 
                     int average = sumAllQueuesSize / 4;
                     
                     int currentQueueSize = queuesSize.remove(currentIndex);
-
+                    
+                    
                     int sumQueueSizeLowerThanAvg = 0;
                     int removeTime = 0;
                     
@@ -66,41 +73,30 @@ public class AllTrafficLight extends Thread{
                         if(!noNeedExtension){
                             int avgLeft = sumQueueSizeLowerThanAvg / queuesSize.size();
                             if(currentQueueSize - avgLeft > 10){
-                                durationForGreen = 10000;
+                                durationForGreen = 11000;
                             }
                         }
                     }
                 }
                 else{
-                    durationForGreen = 10000;
+                    durationForGreen = 11000;
                 }
-               
-                
-                
-                
-//                switch(currentIndex){
-//                    case 0: //North
-//                        
-//                        break;
-//                    case 1: //South
-//                        break;
-//                    case 2: //East
-//                        break;
-//                    case 3: //West
-//                        break;
-//                    case 4: //Pedestrian
-//                        durationForGreen = 7000;
-//                        break;
-//                }
+            
                                 
-                currentIndex = (currentIndex + 1) % queuesSize.size();
+                currentIndex = (currentIndex + 1) % 5;
                 
+                Timing timingGreen = new Timing (durationForGreen, tm);
+                timingGreen.start();
                 Thread.sleep(durationForGreen); 
                 
                 trafficControl.setWhichDirectionToYellow();
-                Thread.sleep(3000); 
+                Timing timingYellow = new Timing (4000, tm);
+                timingYellow.start();
+                Thread.sleep(4000); 
                 
                 trafficControl.setWhichDirectionToRed();
+                Timing timingRed = new Timing (2000, tm);
+                timingRed.start();
                 Thread.sleep(2000);
             }
             
