@@ -5,10 +5,6 @@
  */
 package group9_trafficlightcontrolsystem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,24 +12,27 @@ import java.util.logging.Logger;
  *
  * @author asus
  */
-public class Pedestrian implements Runnable{
+public class CarNorth extends Thread{
     
     TrafficModel tm ;
     TrafficLightControl trafficControl;
-    private String from;
+    CarInfo car;
     
-    public Pedestrian(TrafficLightControl trafficControl,TrafficModel tm){
+    public CarNorth(TrafficLightControl trafficControl){
         this.trafficControl = trafficControl;
-        this.tm=tm;
     }
     
-    public void run(){       
+    public void run(){
+       
         while(true){
-            try {
-                Thread.sleep((int)(Math.random()*60000));
-                trafficControl.generatePedestrian();
+            try {    
+                CarInfo car = new CarInfo("N");
+                trafficControl.addCarToQueue(car);
+                    
+                Thread.sleep((int)(Math.random() * (2000 - 500)) + 500);
+                
             }catch(InterruptedException ex){
-                Logger.getLogger(Pedestrian.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CarNorth.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

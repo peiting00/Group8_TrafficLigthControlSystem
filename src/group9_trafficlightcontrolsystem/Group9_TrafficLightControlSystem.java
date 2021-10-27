@@ -23,9 +23,18 @@ public class Group9_TrafficLightControlSystem {
         TrafficModel tm = new TrafficModel();
         TrafficLightControl trafficControl = new TrafficLightControl(tm);
        
-        Car cars = new Car(trafficControl);
-        Thread car = new Thread(cars);
-        car.start();
+        CarNorth carsNorth = new CarNorth (trafficControl);
+        carsNorth.start();
+        
+        CarSouth carsSouth = new CarSouth (trafficControl);
+        carsSouth.start();
+        
+        CarEast carsEast = new CarEast (trafficControl);
+        carsEast.start();
+        
+        CarWest carsWest = new CarWest (trafficControl);
+        carsWest.start();
+        
         
         Pedestrian pedestrians = new Pedestrian(trafficControl,tm);
         Thread pedestrian = new Thread(pedestrians);

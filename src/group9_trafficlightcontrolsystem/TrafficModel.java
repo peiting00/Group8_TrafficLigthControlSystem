@@ -67,6 +67,7 @@ public class TrafficModel extends javax.swing.JFrame {
         northCar4 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         instruction = new javax.swing.JLabel();
+        secondDisplay = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -307,21 +308,29 @@ public class TrafficModel extends javax.swing.JFrame {
         instruction.setText("Instruction");
         instruction.setBorder(new javax.swing.border.MatteBorder(null));
 
+        secondDisplay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        secondDisplay.setText("Second(s) Left");
+        secondDisplay.setBorder(new javax.swing.border.MatteBorder(null));
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(instruction)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(instruction)
+                    .addComponent(secondDisplay))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap()
                 .addComponent(instruction)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(secondDisplay)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 310, 280));
@@ -784,7 +793,7 @@ public class TrafficModel extends javax.swing.JFrame {
     Boolean northSecond = true;
     Boolean northThird = true;
     
-    public void addCarToNorthQueue(Queue<CarList> northQueue) throws InterruptedException{  
+    public void addCarToNorthQueue(Queue<CarInfo> northQueue) throws InterruptedException{  
         //make visible
         switch(northQueue.size()){
             case 3: 
@@ -806,7 +815,7 @@ public class TrafficModel extends javax.swing.JFrame {
         }
     }
     
-    public void addCarToSouthQueue(Queue<CarList> southQueue) throws InterruptedException{  
+    public void addCarToSouthQueue(Queue<CarInfo> southQueue) throws InterruptedException{  
         //make visible
         switch(southQueue.size()){
             case 2: 
@@ -824,7 +833,7 @@ public class TrafficModel extends javax.swing.JFrame {
         }
     }
     
-    public void addCarToEastQueue(Queue<CarList> eastQueue){
+    public void addCarToEastQueue(Queue<CarInfo> eastQueue){
         //make visible
         switch(eastQueue.size()){
             case 3: 
@@ -846,7 +855,7 @@ public class TrafficModel extends javax.swing.JFrame {
         }
     }
     
-    public void addCarToWestQueue(Queue<CarList> westQueue){
+    public void addCarToWestQueue(Queue<CarInfo> westQueue){
         //make visible
         switch(westQueue.size()){
             case 3: 
@@ -1077,6 +1086,7 @@ public class TrafficModel extends javax.swing.JFrame {
     private javax.swing.JLabel redlight_Pedestrain;
     private javax.swing.JLabel redlight_South;
     private javax.swing.JLabel redlight_West;
+    private javax.swing.JLabel secondDisplay;
     private javax.swing.JLabel south;
     private javax.swing.JLabel southCar1;
     private javax.swing.JLabel southCar2;

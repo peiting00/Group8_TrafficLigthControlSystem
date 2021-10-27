@@ -21,7 +21,7 @@ public class EastTraffic extends Thread{
     public void run(){
         try{
             while(true){
-                CarList carLeft = trafficControl.allowEast();
+                CarInfo carLeft = trafficControl.allowEast();
                 Thread.sleep(1000);
                                 
                 if(carLeft != null){

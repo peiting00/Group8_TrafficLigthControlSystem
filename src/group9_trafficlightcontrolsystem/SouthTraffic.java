@@ -22,7 +22,7 @@ public class SouthTraffic extends Thread{
         try{
             
             while(true){
-                CarList carLeft = trafficControl.allowSouth();
+                CarInfo carLeft = trafficControl.allowSouth();
                 Thread.sleep(1000);
                 
                 if(carLeft != null){

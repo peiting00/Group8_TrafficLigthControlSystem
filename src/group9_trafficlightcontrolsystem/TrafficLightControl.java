@@ -19,10 +19,10 @@ public class TrafficLightControl {
 
     TrafficModel tm;
 
-    Queue<CarList> northQueue = new LinkedBlockingDeque<CarList>();
-    Queue<CarList> southQueue = new LinkedBlockingDeque<CarList>();
-    Queue<CarList> eastQueue = new LinkedBlockingDeque<CarList>();
-    Queue<CarList> westQueue = new LinkedBlockingDeque<CarList>();
+    Queue<CarInfo> northQueue = new LinkedBlockingDeque<CarInfo>();
+    Queue<CarInfo> southQueue = new LinkedBlockingDeque<CarInfo>();
+    Queue<CarInfo> eastQueue = new LinkedBlockingDeque<CarInfo>();
+    Queue<CarInfo> westQueue = new LinkedBlockingDeque<CarInfo>();
 
     Timer timer = new Timer();
     private String green = "";
@@ -39,7 +39,7 @@ public class TrafficLightControl {
 /***************************************************************
 * Traffic Light Sequence Control
 * ***************************************************************/ 
-    public synchronized void allowDirectionByTimer() throws InterruptedException {
+    public synchronized ArrayList<Integer> allowDirectionByTimer() throws InterruptedException {
         green = seqDirection[currentIndex]; //Set Which Traffic Light is Green
         
         currentIndex = (currentIndex + 1) % seqDirection.length;
@@ -53,6 +53,15 @@ public class TrafficLightControl {
  
         tm.setWhichDirectionToColor(green, "G");//turn traffic light to Green in GUI
         displayWhichDirectionisTurningWhichColor ("GREEN");
+        
+        int i = 0;
+        ArrayList<Integer> queuesSize = new ArrayList<Integer>();
+        queuesSize.add(northQueue.size());
+        queuesSize.add(southQueue.size());
+        queuesSize.add(eastQueue.size());
+        queuesSize.add(westQueue.size());
+        
+        return queuesSize;
     }
 
     public void setWhichDirectionToYellow() {
@@ -84,12 +93,12 @@ public class TrafficLightControl {
 /***************************************************************
 * Allow car in North Traffic Light to GO
 * ***************************************************************/ 
-    public synchronized CarList allowNorth() throws InterruptedException {
+    public synchronized CarInfo allowNorth() throws InterruptedException {
         while (!green.equals("N")) {
             wait();
         }
         
-        CarList carLeft = null;
+        CarInfo carLeft = null;
         
         if (!northQueue.isEmpty()) {
 //            for(CarList i : northQueue){
@@ -109,12 +118,12 @@ public class TrafficLightControl {
 /***************************************************************
 * Allow car in South Traffic Light to GO
 * ***************************************************************/ 
-    public synchronized CarList allowSouth() throws InterruptedException {
+    public synchronized CarInfo allowSouth() throws InterruptedException {
         while (!green.equals("S")) {
             wait();
         }
         
-        CarList carLeft = null;
+        CarInfo carLeft = null;
         
         if (!southQueue.isEmpty()) {
             carLeft = southQueue.poll();
@@ -130,11 +139,11 @@ public class TrafficLightControl {
 /***************************************************************
 * Allow car in West Traffic Light to GO
 * ***************************************************************/ 
-    public synchronized CarList allowWest() throws InterruptedException {
+    public synchronized CarInfo allowWest() throws InterruptedException {
         while (!green.equals("W")) {
             wait();
         }
-        CarList carLeft = null;
+        CarInfo carLeft = null;
         if (!westQueue.isEmpty()) {
             carLeft = westQueue.poll();
             System.out.println("                West Car Leaving: " + carLeft.getCarID()+" | Total Car Left: "+westQueue.size());
@@ -149,12 +158,12 @@ public class TrafficLightControl {
 /***************************************************************
 * Allow car in East Traffic Light to GO
 * ***************************************************************/ 
-    public synchronized CarList allowEast() throws InterruptedException {
+    public synchronized CarInfo allowEast() throws InterruptedException {
         while (!green.equals("E")) {
             wait();
         }
         
-        CarList carLeft = null;
+        CarInfo carLeft = null;
         
         if (!eastQueue.isEmpty()) {
             carLeft = eastQueue.poll();
@@ -186,26 +195,9 @@ public class TrafficLightControl {
 /***************************************************************
 * To auto generate car for the 4 direction traffic light and update GUI
 * ***************************************************************/  
-    public synchronized void generateCarDirection(CarList car) throws InterruptedException {
-
-        String[] carDirection = {"N", "E", "S", "W"};//available directions
-        ArrayList<String> carAvailableFrom = new ArrayList<String>(Arrays.asList(carDirection));
-
-        String from = "";
-        String goTo = "";
-
-        int randomIndex = (int) (Math.random() * carAvailableFrom.size());
-        from = carAvailableFrom.get(randomIndex); //randomize where they came from (N, S, E, or W)
-        car.setFrom(from);
-        //randomize where they want to go (N, S, E, or W), but excluding their current location
-        carAvailableFrom.remove(from);
-        int randomGoTo = (int) (Math.random() * carAvailableFrom.size());
-        goTo = carAvailableFrom.get(randomGoTo);
-        car.setGoTo(goTo);
+    public synchronized void addCarToQueue(CarInfo car) throws InterruptedException {
         
-        carAvailableFrom.add(from);//add back the direction
-            
-        switch (from) {
+        switch (car.getFrom()) {
             case ("N")://North Traffic Light
                 northQueue.add(car);//add car to queue for North traffic light
                 tm.setNorthTotalCar(northQueue.size());//set GUI total car
@@ -229,7 +221,7 @@ public class TrafficLightControl {
         }
         //Display the incoming car from which direction to which direction
         //with random car plate number
-        System.out.println(from + " -> " + goTo + ", Car Plate Number:" + car.getCarID());
+        System.out.println(car.getFrom() + " -> " + car.getGoTo() + ", Car Plate Number:" + car.getCarID());
         notify();
     }
 /***************************************************************
