@@ -201,6 +201,7 @@ public class TrafficLightControl {
         carAvailableFrom.remove(from);
         int randomGoTo = (int) (Math.random() * carAvailableFrom.size());
         goTo = carAvailableFrom.get(randomGoTo);
+        car.setGoTo(goTo);
         
         carAvailableFrom.add(from);//add back the direction
             

@@ -23,6 +23,7 @@ public class CarMovement extends Thread{
     
     public void run(){
         try{
+            System.out.println("GO to " + goTo );
             switch(from){
                 case "N":
                     if(goTo.equals("E")){
