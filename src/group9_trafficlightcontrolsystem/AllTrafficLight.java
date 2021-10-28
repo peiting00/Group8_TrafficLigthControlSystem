@@ -35,9 +35,7 @@ public class AllTrafficLight extends Thread{
                 int durationForGreen = 6000;
                 ArrayList<Integer> queuesSize = trafficControl.allowDirectionByTimer();
                 
-                System.out.println("current index " + currentIndex);
                 if(currentIndex != 4){
-                    
                     int sumAllQueuesSize = 0;
                     queuesSize.remove(queuesSize.get(4));
                     
@@ -45,25 +43,24 @@ public class AllTrafficLight extends Thread{
                         sumAllQueuesSize += queuesSize.get(i);
 
                     int average = sumAllQueuesSize / 4;
-                    
+
                     int currentQueueSize = queuesSize.remove(currentIndex);
                     
-                    
                     int sumQueueSizeLowerThanAvg = 0;
-                    int removeTime = 0;
                     
+                    int removeTime = 0;
                     
                     if(currentQueueSize > average){
                         boolean noNeedExtension = false;
                         
                         for (int i = 0; i < queuesSize.size(); i++) {
                             if(queuesSize.get(i) > average){
-                                 queuesSize.remove(i);
-                                 
-                                 if(++removeTime > 1){
-                                     noNeedExtension = true;
-                                     break;
-                                 }
+                                queuesSize.remove(i);
+
+                                if(++removeTime > 1){
+                                    noNeedExtension = true;
+                                    break;
+                                }
                             }
                             else{
                                 sumQueueSizeLowerThanAvg += queuesSize.get(i);
@@ -72,7 +69,10 @@ public class AllTrafficLight extends Thread{
                         
                         if(!noNeedExtension){
                             int avgLeft = sumQueueSizeLowerThanAvg / queuesSize.size();
-                            if(currentQueueSize - avgLeft > 10){
+                            if(currentQueueSize - avgLeft > 20){
+                                durationForGreen = 21000;
+                            }
+                            else if(currentQueueSize - avgLeft > 10){
                                 durationForGreen = 11000;
                             }
                         }
@@ -95,9 +95,9 @@ public class AllTrafficLight extends Thread{
                 Thread.sleep(4000); 
                 
                 trafficControl.setWhichDirectionToRed();
-                Timing timingRed = new Timing (2000, tm);
+                Timing timingRed = new Timing (3000, tm);
                 timingRed.start();
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             }
             
         }catch(InterruptedException e){

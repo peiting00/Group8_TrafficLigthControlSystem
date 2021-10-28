@@ -57,8 +57,8 @@ public class TrafficLightControl {
         int i = 0;
         ArrayList<Integer> queuesSize = new ArrayList<Integer>();
         queuesSize.add(northQueue.size());
-        queuesSize.add(southQueue.size());
         queuesSize.add(eastQueue.size());
+        queuesSize.add(southQueue.size());
         queuesSize.add(westQueue.size());
         queuesSize.add(pedestrianNum);
         

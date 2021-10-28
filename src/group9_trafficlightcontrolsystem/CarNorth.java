@@ -29,7 +29,7 @@ public class CarNorth extends Thread{
                 CarInfo car = new CarInfo("N");
                 trafficControl.addCarToQueue(car);
                     
-                Thread.sleep((int)(Math.random() * (2000 - 500)) + 500);
+                Thread.sleep((int)(Math.random() * (3000 - 2000)) + 2000);
                 
             }catch(InterruptedException ex){
                 Logger.getLogger(CarNorth.class.getName()).log(Level.SEVERE, null, ex);
