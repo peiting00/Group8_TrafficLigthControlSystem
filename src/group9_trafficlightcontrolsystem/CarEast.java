@@ -21,12 +21,25 @@ public class CarEast extends Thread{
     }
     
     public void run(){
+        int durationEast = 8000;
+        
         while(true){
-            try {    
-                CarInfo car = new CarInfo("E");
-                trafficControl.addCarToQueue(car);
+            try {                    
+                while(durationEast > 2000){
+                    CarInfo car = new CarInfo("E");
+                    trafficControl.addCarToQueue(car);
+                    durationEast -= (durationEast > 5000) ? 500 : 250;
+                    Thread.sleep(durationEast);
+                }
                 
-                Thread.sleep((int)(Math.random() * (4000 - 1000)) + 4000);
+                while(durationEast < 8000){
+                    CarInfo car = new CarInfo("E");
+                    trafficControl.addCarToQueue(car);
+                    durationEast += 500;
+                    Thread.sleep(durationEast);
+                }
+                
+                Thread.sleep((int)(Math.random() * (4000 - 1000)) + 1000);
             }catch(InterruptedException ex){
                 Logger.getLogger(CarEast.class.getName()).log(Level.SEVERE, null, ex);
             }

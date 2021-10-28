@@ -70,10 +70,10 @@ public class AllTrafficLight extends Thread{
                         if(!noNeedExtension){
                             int avgLeft = sumQueueSizeLowerThanAvg / queuesSize.size();
                             if(currentQueueSize - avgLeft > 20){
-                                durationForGreen = 21000;
+                                durationForGreen += 20000;
                             }
                             else if(currentQueueSize - avgLeft > 10){
-                                durationForGreen = 11000;
+                                durationForGreen += 10000;
                             }
                         }
                     }

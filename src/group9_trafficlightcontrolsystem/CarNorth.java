@@ -23,14 +23,24 @@ public class CarNorth extends Thread{
     }
     
     public void run(){
-       
+       int durationNorth = 8000;
+        
         while(true){
             try {    
-                CarInfo car = new CarInfo("N");
-                trafficControl.addCarToQueue(car);
+                while(durationNorth > 1000){
+                    CarInfo car = new CarInfo("N");
+                    trafficControl.addCarToQueue(car);
                     
-                Thread.sleep((int)(Math.random() * (3000 - 2000)) + 2000);
+                    durationNorth -= (durationNorth > 5000) ? 500 : 250;
+                    Thread.sleep(durationNorth);
+                }
                 
+                while(durationNorth < 8000){
+                    CarInfo car = new CarInfo("N");
+                    trafficControl.addCarToQueue(car);
+                    durationNorth += 1000;
+                    Thread.sleep(durationNorth);
+                }
             }catch(InterruptedException ex){
                 Logger.getLogger(CarNorth.class.getName()).log(Level.SEVERE, null, ex);
             }
