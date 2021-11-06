@@ -21,8 +21,12 @@ public class Group9_TrafficLightControlSystem {
     
     public static void main(String[] args) {
         TrafficModel tm = new TrafficModel();
+        
+        
+        
         TrafficLightControl trafficControl = new TrafficLightControl(tm);
-       
+        AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl, tm);
+        AllTrafficLights.start();
         CarNorth carsNorth = new CarNorth (trafficControl);
         carsNorth.start();
         
@@ -57,8 +61,7 @@ public class Group9_TrafficLightControlSystem {
         WestTraffic w = new WestTraffic(trafficControl, tm);
         w.start();
         
-        AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl, tm);
-        AllTrafficLights.start();
+        
         
         
       
