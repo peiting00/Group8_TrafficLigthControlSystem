@@ -243,7 +243,7 @@ public class TrafficLightControl {
                 + pedestrianInstruction+"\n=======================================\n");
         pedestrianNum++;
         System.out.println("Pedestrian Coming...   |  Total Pedestrian: " + pedestrianNum);
-        tm.setPedestrian(pedestrianInstruction);//update GUI pedestrian number
+        tm.setPedestrian(pedestrianInstruction);//update GUI pedestrian button has been pushed.
         notify();
     }
 }

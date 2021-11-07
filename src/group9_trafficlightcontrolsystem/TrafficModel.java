@@ -165,7 +165,7 @@ public class TrafficModel extends javax.swing.JFrame {
         jLabel6.setText("Pedestrian Crossing Light");
 
         pedestrian.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pedestrian.setText("Pedestrian");
+        pedestrian.setText("Pedestrian Crossing Light IDLE");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -237,7 +237,7 @@ public class TrafficModel extends javax.swing.JFrame {
                 .addComponent(yellowlight_North, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(greenlight_North, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         trafficLightBackground_NorthLayout.setVerticalGroup(
             trafficLightBackground_NorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,54 +648,11 @@ public class TrafficModel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//int a=0;
-//int b =0;
-//Timer carTimer = new Timer(10,new ActionListener(){
-//   public void actionPerformed(ActionEvent e)
-//   {
-//       b++;
-//       car.setLocation(b,250);
-//       if(b==300){
-//           b=0;
-//       }
-//   }
-//});
-//
-//Timer timer2 = new Timer(1000,new ActionListener(){
-//   public void actionPerformed(ActionEvent e)
-//   {
-//       a++;
-//       switch(a){
-//           case 2:
-//           {
-//               greenlight_goEast.setBackground(Color.white);
-//               redlight_goEast.setBackground(Color.red);
-//               carTimer.stop();
-//               break;
-//           }
-//           case 4:
-//           {
-//               redlight_goEast.setBackground(Color.white);
-//               yellowlight_goEast.setBackground(Color.yellow);
-//               break;
-//           }
-//           case 6:
-//           {
-//               yellowlight_goEast.setBackground(Color.white);
-//               greenlight_goEast.setBackground(Color.green);
-//               carTimer.start();
-//               break;
-//           }
-//       }
-//       if(a==6){
-//           a=0;
-//       }
-//   }
-//});
+
 /***************************************************************
 * To set traffic light to GREEN/YELLOW
 * ***************************************************************/  
-    public void setWhichDirectionToColor(String occupied, String color){
+    public void setWhichDirectionToColor(String trafficlight, String color){
         Color colorToSet = color.equals("G") ? Color.green : 
                             color.equals("Y") ? Color.yellow : Color.red;
         
@@ -703,22 +660,22 @@ public class TrafficModel extends javax.swing.JFrame {
             if(currentGreen != null)
                 currentGreen.setBackground(Color.white);
             
-            if(occupied.equals("N")){
+            if(trafficlight.equals("N")){
                 currentGreen = greenlight_North;
                 readyToYellow = yellowlight_North;
                 readyToRed = redlight_North;
             }
-            else if(occupied.equals("S")){
+            else if(trafficlight.equals("S")){
                 currentGreen = greenlight_South;
                 readyToYellow = yellowlight_South;
                 readyToRed = redlight_South;
             }
-            else if(occupied.equals("W")){
+            else if(trafficlight.equals("W")){
                 currentGreen = greenlight_West;
                 readyToYellow = yellowlight_West;
                 readyToRed = redlight_West;
             }
-            else if(occupied.equals("E")){
+            else if(trafficlight.equals("E")){
                 currentGreen = greenlight_East;
                 readyToYellow = yellowlight_East;
                 readyToRed = redlight_East;
@@ -729,7 +686,7 @@ public class TrafficModel extends javax.swing.JFrame {
             }
             currentGreen.setBackground(colorToSet);
             readyToRed.setBackground(Color.white);
-            setOtherDirectionToRed(occupied);
+            setOtherDirectionToRed(trafficlight);
         }
         else if(color.equals("Y")){
             currentGreen.setBackground(Color.white);
