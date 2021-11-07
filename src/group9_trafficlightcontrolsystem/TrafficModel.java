@@ -701,20 +701,20 @@ public class TrafficModel extends javax.swing.JFrame {
 /***************************************************************
 * To set traffic light to RED
 * ***************************************************************/    
-    public void setOtherDirectionToRed(String occupied){
-        if(!occupied.equals("N"))
+    public void setOtherDirectionToRed(String trafficlight){
+        if(!trafficlight.equals("N"))
             redlight_North.setBackground(Color.red);
         
-        if(!occupied.equals("S"))
+        if(!trafficlight.equals("S"))
             redlight_South.setBackground(Color.red);
         
-        if(!occupied.equals("W"))
+        if(!trafficlight.equals("W"))
             redlight_West.setBackground(Color.red);
         
-        if(!occupied.equals("E"))
+        if(!trafficlight.equals("E"))
             redlight_East.setBackground(Color.red);
         
-        if(!occupied.equals("P"))
+        if(!trafficlight.equals("P"))
             redlight_Pedestrain.setBackground(Color.red);
     }
     
