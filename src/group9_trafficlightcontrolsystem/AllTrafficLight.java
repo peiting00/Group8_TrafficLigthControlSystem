@@ -86,7 +86,7 @@ public class AllTrafficLight extends Thread{
                 
                 Timing timingGreen = new Timing (durationForGreen, tm);
                 timingGreen.start();
-                System.out.println("Timing: "+ ((durationForGreen/1000)-1) +" second(s) left");
+                System.out.println("Timing: " + ((durationForGreen/1000)-1) + " second(s) left");
                 Thread.sleep(durationForGreen); 
                 
                 trafficControl.setWhichDirectionToYellow();

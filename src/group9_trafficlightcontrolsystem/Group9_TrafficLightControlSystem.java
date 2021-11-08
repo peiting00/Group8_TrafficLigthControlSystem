@@ -14,15 +14,8 @@ import java.util.List;
  * @author user
  */
 public class Group9_TrafficLightControlSystem {
-
-    /**
-     * @param args the command line arguments
-     */
-    
     public static void main(String[] args) {
         TrafficModel tm = new TrafficModel();
-        
-        
         
         TrafficLightControl trafficControl = new TrafficLightControl(tm);
         AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl, tm);
@@ -39,16 +32,11 @@ public class Group9_TrafficLightControlSystem {
         CarWest carsWest = new CarWest (trafficControl);
         carsWest.start();
         
-        
         Pedestrian pedestrians = new Pedestrian(trafficControl,tm);
         Thread pedestrian = new Thread(pedestrians);
         pedestrian.start();
         
-        PedestrianTraffic p = new PedestrianTraffic(trafficControl);
-        p.start();
         
-        //TrafficLights trafficLights = new TrafficLights(trafficControl);
-        //trafficLights.start();
         NorthTraffic n = new NorthTraffic(trafficControl, tm);
         n.start();
         
@@ -61,9 +49,7 @@ public class Group9_TrafficLightControlSystem {
         WestTraffic w = new WestTraffic(trafficControl, tm);
         w.start();
         
-        
-        
-        
-      
+        PedestrianTraffic p = new PedestrianTraffic(trafficControl);
+        p.start();
     }
 }
