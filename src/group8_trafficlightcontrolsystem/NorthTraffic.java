@@ -3,33 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group9_trafficlightcontrolsystem;
+package group8_trafficlightcontrolsystem;
 
 /**
  *
  * @author user
  */
-public class SouthTraffic extends Thread{
+public class NorthTraffic extends Thread{
      TrafficLightControl trafficControl;
      TrafficModel tm;
     
-    public SouthTraffic(TrafficLightControl trafficControl, TrafficModel tm){
+    public NorthTraffic(TrafficLightControl trafficControl, TrafficModel tm){
         this.trafficControl = trafficControl;
         this.tm = tm;
     }
     
     public void run(){
         try{
-            
             while(true){
-                CarInfo carLeft = trafficControl.allowSouth();
+                CarInfo carLeft = trafficControl.allowNorth();
                 Thread.sleep(1000);
                 
                 if(carLeft != null){
                     CarMovement movement = new CarMovement(carLeft.getFrom(), carLeft.getGoTo(), tm);
                     movement.start();
                 }
-            }   
+                
+            }
+            
         }catch(InterruptedException e){
             e.printStackTrace();
         }   
