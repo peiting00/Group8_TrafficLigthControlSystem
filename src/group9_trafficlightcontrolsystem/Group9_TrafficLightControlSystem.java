@@ -47,8 +47,6 @@ public class Group9_TrafficLightControlSystem {
         PedestrianTraffic p = new PedestrianTraffic(trafficControl);
         p.start();
         
-        //TrafficLights trafficLights = new TrafficLights(trafficControl);
-        //trafficLights.start();
         NorthTraffic n = new NorthTraffic(trafficControl, tm);
         n.start();
         
