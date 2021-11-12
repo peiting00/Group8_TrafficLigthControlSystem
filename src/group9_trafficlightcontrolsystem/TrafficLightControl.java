@@ -6,9 +6,7 @@
 package group9_trafficlightcontrolsystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Queue;
-import java.util.Timer;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
@@ -23,10 +21,9 @@ public class TrafficLightControl {
     Queue<CarInfo> eastQueue = new LinkedBlockingDeque<CarInfo>();
     Queue<CarInfo> westQueue = new LinkedBlockingDeque<CarInfo>();
 
-    Timer timer = new Timer();
     private String green = "";
     
-    private final String[] seqDirection = {"N", "E", "S", "W", "P"};//{"N", "E", "S", "W"};
+    private final String[] seqDirection = {"N", "E", "S", "W", "P"};
     private int currentIndex = 0;
     private int pedestrianNum = 0;
     
@@ -43,7 +40,8 @@ public class TrafficLightControl {
         
         currentIndex = (currentIndex + 1) % seqDirection.length;
         
-        if(green.equals("P") && pedestrianNum == 0){ //if no pedestrian then skip the pdestrian green light and set to north
+        //if no pedestrian then skip the pdestrian green light and set to north
+        if(green.equals("P") && pedestrianNum == 0){ 
             green = "N";
             currentIndex = 1;
         }
@@ -53,7 +51,6 @@ public class TrafficLightControl {
         tm.setWhichDirectionToColor(green, "G");//turn traffic light to Green in GUI
         displayWhichDirectionisTurningWhichColor ("GREEN");
         
-        int i = 0;
         ArrayList<Integer> queuesSize = new ArrayList<Integer>();
         queuesSize.add(northQueue.size());
         queuesSize.add(eastQueue.size());

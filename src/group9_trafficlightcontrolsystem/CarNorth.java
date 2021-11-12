@@ -27,11 +27,11 @@ public class CarNorth extends Thread{
         
         while(true){
             try {    
-                while(durationNorth > 1000){
+                //car duration range 1000-8000
+                while(durationNorth > 1000){ 
                     CarInfo car = new CarInfo("N");
                     trafficControl.addCarToQueue(car);
-                    
-                    durationNorth -= (durationNorth > 5000) ? 500 : 250;
+                    durationNorth -= (durationNorth > 5000) ? 500 : 250; 
                     Thread.sleep(durationNorth);
                 }
                 
@@ -47,3 +47,4 @@ public class CarNorth extends Thread{
         }
     }
 }
+
