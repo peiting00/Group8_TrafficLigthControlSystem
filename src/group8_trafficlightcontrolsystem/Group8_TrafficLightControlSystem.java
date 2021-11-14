@@ -18,8 +18,10 @@ public class Group8_TrafficLightControlSystem {
         TrafficModel tm = new TrafficModel();
         
         TrafficLightControl trafficControl = new TrafficLightControl(tm);
+        
         AllTrafficLight AllTrafficLights = new AllTrafficLight(trafficControl, tm);
         AllTrafficLights.start();
+        
         CarNorth carsNorth = new CarNorth (trafficControl);
         carsNorth.start();
         

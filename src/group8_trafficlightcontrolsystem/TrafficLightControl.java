@@ -32,6 +32,10 @@ public class TrafficLightControl {
         tm.setVisible(true); //initialize the Java GUI
     }
     
+    public String getCurrentGreen(){
+        return green;
+    }
+    
 /***************************************************************
 * Traffic Light Sequence Control
 * ***************************************************************/ 
